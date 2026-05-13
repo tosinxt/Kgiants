@@ -1,0 +1,144 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  background: var(--color-canvas-white);
+  border-bottom: 1px solid var(--color-light-steel);
+}
+
+.logo {
+  font-family: var(--font-dm-sans);
+  font-size: 22px;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.44px;
+  color: var(--color-midnight-ink);
+  transition: letter-spacing 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo:hover {
+  letter-spacing: 1px;
+}
+
+.navLinks {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.link {
+  font-family: var(--font-dm-sans);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-midnight-ink);
+  font-size: 15px;
+  transition: color 0.2s ease;
+}
+
+.link:hover {
+  color: var(--color-muted-stone);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.actionBtn {
+  display: flex;
+  align-items: center;
+  color: var(--color-midnight-ink);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid var(--color-midnight-ink);
+  border-radius: var(--radius-buttons);
+  padding: 8px 16px;
+  font-family: var(--font-dm-sans);
+  font-size: 14px;
+}
+
+.actionBtn:hover {
+  background: var(--color-soft-cloud);
+}
+
+.actionBtn:active {
+  transform: scale(0.96);
+}
+
+.actionBtn:focus-visible {
+  outline: 2px solid var(--color-midnight-ink);
+  outline-offset: 4px;
+}
+
+.usernameText {
+  font-size: 12px;
+  text-transform: capitalize;
+  margin-left: 6px;
+  font-family: var(--font-dm-sans);
+  font-weight: var(--font-weight-medium);
+}
+
+.cartButton {
+  position: relative;
+  background: transparent;
+  border: 1px solid var(--color-midnight-ink);
+  border-radius: var(--radius-buttons);
+  padding: 8px;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-midnight-ink);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.cartButton:hover {
+  background: var(--color-soft-cloud);
+}
+
+.cartButton:active {
+  transform: scale(0.92);
+}
+
+.cartButton:focus-visible {
+  outline: 2px solid var(--color-midnight-ink);
+  outline-offset: 4px;
+}
+
+.badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: var(--color-vivacious-green);
+  color: var(--color-midnight-ink);
+  font-size: 10px;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-dm-sans);
+  border: 1px solid var(--color-midnight-ink);
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 24px;
+  }
+  .navLinks {
+    display: none;
+  }
+}
