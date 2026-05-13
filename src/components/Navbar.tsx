@@ -34,7 +34,7 @@ export default function Navbar() {
           <Link href="/auth" className={styles.actionBtn} aria-label="Profile">
             <User size={18} />
             <span className={styles.usernameText}>
-              {user.name}
+              {user.email?.split('@')[0]}
             </span>
           </Link>
         ) : (

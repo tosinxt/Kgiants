@@ -23,18 +23,19 @@ function AuthContent() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
       if (isLogin) {
-        await login(email);
+        await login(email, password);
         toast.success('Signed in successfully.');
       } else {
-        await signup(email);
+        await signup(email, password);
         toast.success('Account registered.');
       }
       router.push(redirect);
-    } catch (error) {
-      toast.error('Authentication failed. Please verify credentials.');
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : 'Authentication failed. Please verify credentials.';
+      toast.error(message);
     } finally {
       setIsSubmitting(false);
     }
@@ -54,7 +55,7 @@ function AuthContent() {
             <Link href="/" style={{ display: 'block', width: '100%', background: 'var(--color-midnight-ink)', color: 'var(--color-canvas-white)', padding: '14px', borderRadius: '40px', textAlign: 'center', textDecoration: 'none', fontSize: '14px', fontWeight: 500, fontFamily: 'var(--font-dm-sans)', border: '1px solid var(--color-midnight-ink)', transition: 'all 0.2s ease' }}>
               Back to Ledger
             </Link>
-            <button onClick={logout} style={{ fontFamily: 'var(--font-dm-sans)', width: '100%', background: 'transparent', border: '1px solid var(--color-midnight-ink)', color: 'var(--color-midnight-ink)', padding: '14px', borderRadius: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', cursor: 'pointer', fontSize: '14px', fontWeight: 500, transition: 'all 0.2s ease' }}>
+            <button onClick={() => { logout(); }} style={{ fontFamily: 'var(--font-dm-sans)', width: '100%', background: 'transparent', border: '1px solid var(--color-midnight-ink)', color: 'var(--color-midnight-ink)', padding: '14px', borderRadius: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', cursor: 'pointer', fontSize: '14px', fontWeight: 500, transition: 'all 0.2s ease' }}>
               <LogOut size={16} /> Log Out
             </button>
           </div>
