@@ -1,22 +1,35 @@
 import type { Metadata } from "next";
-import { DM_Sans } from "next/font/google";
+import { Cormorant_Garamond, Jost } from "next/font/google";
 import { Toaster } from 'react-hot-toast';
 import { CartProvider } from "@/context/CartContext";
 import { AuthProvider } from "@/context/AuthContext";
+import { MenuProvider } from "@/context/MenuContext";
 import Navbar from "@/components/Navbar";
-import CartDrawer from "@/components/CartDrawer";
+import CartSidebar from "@/components/CartSidebar";
+import MenuSidebar from "@/components/MenuSidebar";
+import LayoutInner from "@/components/LayoutInner";
+import CookieBanner from "@/components/CookieBanner";
+import CheckoutDialog from "@/components/CheckoutDialog";
 import "./globals.css";
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+const cormorant = Cormorant_Garamond({
+  variable: "--font-display",
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: ["300", "400", "500"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+const jost = Jost({
+  variable: "--font-body",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "KGiants | Cinematic Digital Collections",
-  description: "Experience the immersive, cinematic digital collections of KGiants.",
+  title: "KGiants | Luxury Diffusers & Fragrance Oils",
+  description: "Curated luxury diffusers and fragrance oils. Elevate every space.",
 };
 
 export default function RootLayout({
@@ -25,16 +38,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${dmSans.variable}`}>
+    <html lang="en" className={`${cormorant.variable} ${jost.variable}`}>
       <body>
         <AuthProvider>
           <CartProvider>
-            <Navbar />
-            <main style={{ minHeight: '100vh' }}>
-              {children}
-            </main>
-            <CartDrawer />
-            <Toaster />
+            <MenuProvider>
+              {/* Menu is fixed overlay — lives at root, not inside layout-wrapper */}
+              <MenuSidebar />
+
+              <Navbar />
+              <div className="layout-wrapper">
+                <LayoutInner>
+                  <main className="main-content">
+                    {children}
+                  </main>
+                  <CartSidebar />
+                </LayoutInner>
+              </div>
+              <CheckoutDialog />
+              <CookieBanner />
+              <Toaster position="bottom-center" toastOptions={{ style: { fontFamily: 'var(--font-body)', fontSize: 14, background: '#1A1714', color: '#FAFAF7', borderRadius: 2 } }} />
+            </MenuProvider>
           </CartProvider>
         </AuthProvider>
       </body>

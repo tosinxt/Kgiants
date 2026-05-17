@@ -1,0 +1,316 @@
+{
+  "source": "Aromar (aromar.com / aromar.net)",
+  "supplier_invoice": {
+    "number": "12637",
+    "date": "04/20/2026",
+    "sold_to": "K & Giants, 2123 Sunnymade Dr, Dallas, TX 75126",
+    "broker": {
+      "name": "Carlos Fernandez",
+      "phone": "(786) 477-4174 ext 121",
+      "email": "carlosf@marcompanygroup.com"
+    },
+    "payment_terms": "CC — Customer pays freight via UPS"
+  },
+  "products": [
+    {
+      "sku": "AP-3001",
+      "upc": "810122383017",
+      "name": "Aromar+ Waterless Diffuser White",
+      "category": "Waterless Diffuser",
+      "color": "White",
+      "retail_url": "https://aromar.com/products/aromar-diffuser",
+      "msrp_usd": 69.99,
+      "retail_price_usd": 79.99,
+      "wholesale_price_usd": 35.00,
+      "invoice_qty": 2,
+      "invoice_line_total_usd": 70.00,
+      "description": "Introducing the Aromar+ Waterless Advanced Ultrasonic Diffuser – a Fusion of Elegance and Innovation. Utilizing high-frequency ultrasonic waves, this diffuser transforms water and Aromar+ essential oils into a fine mist, delivering a continuous stream of your chosen fragrance. Features ambient mood lighting, whisper-quiet operation, auto shut-off safety feature, and easy-to-clean detachable components.",
+      "features": [
+        "Innovative ultrasonic technology",
+        "Sleek minimalist design",
+        "Ambient mood lighting (multiple colors)",
+        "Whisper-quiet operation",
+        "Auto shut-off when water level is low",
+        "Easy to use and clean"
+      ],
+      "images": [
+        "https://cdn.shopify.com/s/files/1/1531/8467/files/AP-3001-WhiteDiffuser.jpg?v=1709699706",
+        "https://cdn.shopify.com/s/files/1/1531/8467/files/AP-3001LIFESTYLE.jpg?v=1709699818"
+      ],
+      "tags": ["AromarPlus", "Waterless Diffuser", "Ultrasonic"]
+    },
+    {
+      "sku": "AP-3002",
+      "upc": "810122383024",
+      "name": "Aromar+ Waterless Diffuser Black",
+      "category": "Waterless Diffuser",
+      "color": "Black",
+      "retail_url": "https://aromar.com/products/aromar-diffuser-black",
+      "msrp_usd": 69.99,
+      "retail_price_usd": 79.99,
+      "wholesale_price_usd": 35.00,
+      "invoice_qty": 2,
+      "invoice_line_total_usd": 70.00,
+      "description": "Introducing the Aromar+ Waterless Advanced Ultrasonic Diffuser – a Fusion of Elegance and Innovation. Utilizing high-frequency ultrasonic waves, this diffuser transforms water and Aromar+ essential oils into a fine mist, delivering a continuous stream of your chosen fragrance. Features ambient mood lighting, whisper-quiet operation, auto shut-off safety feature, and easy-to-clean detachable components.",
+      "features": [
+        "Innovative ultrasonic technology",
+        "Sleek minimalist design",
+        "Ambient mood lighting (multiple colors)",
+        "Whisper-quiet operation",
+        "Auto shut-off when water level is low",
+        "Easy to use and clean"
+      ],
+      "images": [
+        "https://cdn.shopify.com/s/files/1/1531/8467/files/AP-3002-BlackDiffuser.jpg?v=1709831029",
+        "https://cdn.shopify.com/s/files/1/1531/8467/files/AP-3002LIFESTYLE.jpg?v=1709831029"
+      ],
+      "tags": ["AromarPlus", "Waterless Diffuser", "Ultrasonic"]
+    },
+    {
+      "sku": "AP-3003",
+      "upc": "810122383031",
+      "name": "Aromar+ Waterless Diffuser Silver",
+      "category": "Waterless Diffuser",
+      "color": "Silver",
+      "retail_url": "https://aromar.com/products/aromar-diffuser-silver",
+      "msrp_usd": 69.99,
+      "retail_price_usd": 79.99,
+      "wholesale_price_usd": 35.00,
+      "invoice_qty": 2,
+      "invoice_line_total_usd": 70.00,
+      "description": "Introducing the Aromar+ Waterless Advanced Ultrasonic Diffuser – a Fusion of Elegance and Innovation. Utilizing high-frequency ultrasonic waves, this diffuser transforms water and Aromar+ essential oils into a fine mist, delivering a continuous stream of your chosen fragrance. Features ambient mood lighting, whisper-quiet operation, auto shut-off safety feature, and easy-to-clean detachable components.",
+      "features": [
+        "Innovative ultrasonic technology",
+        "Sleek minimalist design",
+        "Ambient mood lighting (multiple colors)",
+        "Whisper-quiet operation",
+        "Auto shut-off when water level is low",
+        "Easy to use and clean"
+      ],
+      "images": [
+        "https://cdn.shopify.com/s/files/1/1531/8467/files/AP-3003-SilverDiffuser.jpg?v=1709830691",
+        "https://cdn.shopify.com/s/files/1/1531/8467/files/AP-3003LIFESTYLE.jpg?v=1709830864"
+      ],
+      "tags": ["AromarPlus", "Waterless Diffuser", "Ultrasonic"]
+    },
+    {
+      "sku": "AP-3004",
+      "upc": "810122383048",
+      "name": "Aromar+ Waterless Diffuser Gold",
+      "category": "Waterless Diffuser",
+      "color": "Gold",
+      "retail_url": "https://aromar.com/products/aromar-diffuser-gold",
+      "msrp_usd": 69.99,
+      "retail_price_usd": 79.99,
+      "wholesale_price_usd": 35.00,
+      "invoice_qty": 2,
+      "invoice_line_total_usd": 70.00,
+      "description": "Introducing the Aromar+ Waterless Advanced Ultrasonic Diffuser – a Fusion of Elegance and Innovation. Utilizing high-frequency ultrasonic waves, this diffuser transforms water and Aromar+ essential oils into a fine mist, delivering a continuous stream of your chosen fragrance. Features ambient mood lighting, whisper-quiet operation, auto shut-off safety feature, and easy-to-clean detachable components.",
+      "features": [
+        "Innovative ultrasonic technology",
+        "Sleek minimalist design",
+        "Ambient mood lighting (multiple colors)",
+        "Whisper-quiet operation",
+        "Auto shut-off when water level is low",
+        "Easy to use and clean"
+      ],
+      "images": [
+        "https://cdn.shopify.com/s/files/1/1531/8467/files/AP-3004-GoldDiffuser.jpg?v=1709831060",
+        "https://cdn.shopify.com/s/files/1/1531/8467/files/AP-3004LIFESTYLE.jpg?v=1709831060"
+      ],
+      "tags": ["AromarPlus", "Waterless Diffuser", "Ultrasonic"]
+    },
+    {
+      "sku": "AP-1006",
+      "upc": "810122382812",
+      "name": "Aromar+ Waterless Fragrance Oil Dubai",
+      "category": "Fragrance Oil",
+      "subcategory": "60ml Aromar Plus Oil",
+      "scent": "Dubai",
+      "inspired_by": "W Hotel®",
+      "size_oz": 2,
+      "retail_url": "https://aromar.com/products/aromar-fragrance-oil-dubai",
+      "msrp_usd": 20.00,
+      "retail_price_usd": 35.00,
+      "wholesale_price_usd": 7.00,
+      "invoice_qty": 12,
+      "invoice_line_total_usd": 84.00,
+      "description": "Waterless Fragrance Oil Dubai by Aromar epitomizes the luxury and opulence of the Middle Eastern jewel city. Infusing your space with the rich and exotic aromas of Dubai, this fragrance oil is a celebration of grandeur and elegance. Crafted by Aromar's experts using the finest ingredients, Dubai fragrance oil is perfect for an array of applications. Its long-lasting scent is ideal for enhancing candles, air fresheners, or for simple diffusion to fill the air with Dubai's lavish essence.",
+      "caution": "Not safe for skin, bath, or cream purposes.",
+      "compatible_with": ["Waterless diffusers", "Plug-in diffusers", "Ultrasonic diffusers", "Candles", "Air fresheners"],
+      "retail_variants": [
+        { "title": "Single", "price_usd": 35.00 },
+        { "title": "2-Pack", "price_usd": 50.00 },
+        { "title": "3-Pack", "price_usd": 70.00 }
+      ],
+      "images": [
+        "https://cdn.shopify.com/s/files/1/1531/8467/files/AP-1006-DUBAI.jpg?v=1709694654",
+        "https://cdn.shopify.com/s/files/1/1531/8467/files/AP-1006LIFESTYLE.jpg?v=1709694654"
+      ],
+      "tags": ["AromarPlus", "Fragrance Oil", "Waterless"]
+    },
+    {
+      "sku": "AP-1018",
+      "upc": "810122382935",
+      "name": "Aromar+ Waterless Fragrance Oil Prague",
+      "category": "Fragrance Oil",
+      "subcategory": "60ml Aromar Plus Oil",
+      "scent": "Prague",
+      "inspired_by": "Baccarat Rouge®",
+      "size_oz": 2,
+      "retail_url": "https://aromar.com/products/aromar-fragrance-oil-prague",
+      "msrp_usd": 20.00,
+      "retail_price_usd": 35.00,
+      "wholesale_price_usd": 7.00,
+      "invoice_qty": 6,
+      "invoice_line_total_usd": 42.00,
+      "description": "Waterless Fragrance Oil Prague by Aromar captures the mystical and historical essence of the Czech capital. This oil brings the unique charm of Prague's cobbled streets, ancient architecture, and vibrant cultural life into your space, offering a scent as enchanting and complex as the city itself. Developed by Aromar's skilled perfumers, the Prague fragrance oil is crafted with the highest quality ingredients. Its rich and mesmerizing aroma is perfect for enhancing candles, air fresheners, or for diffusion.",
+      "caution": "Not safe for skin, bath, or cream purposes.",
+      "compatible_with": ["Waterless diffusers", "Plug-in diffusers", "Ultrasonic diffusers", "Candles", "Air fresheners"],
+      "retail_variants": [
+        { "title": "Single", "price_usd": 35.00 },
+        { "title": "2-Pack", "price_usd": 35.00 },
+        { "title": "3-Pack", "price_usd": 35.00 }
+      ],
+      "images": [
+        "https://cdn.shopify.com/s/files/1/1531/8467/files/AP-1018-PRAGUE.jpg?v=1709699256",
+        "https://cdn.shopify.com/s/files/1/1531/8467/files/AP-1018LIFESTYLE.jpg?v=1709699257"
+      ],
+      "tags": ["AromarPlus", "Fragrance Oil", "Waterless"]
+    },
+    {
+      "sku": "AP-1021",
+      "upc": "810122383949",
+      "name": "Aromar+ Waterless Fragrance Oil Napa",
+      "category": "Fragrance Oil",
+      "subcategory": "60ml Aromar Plus Oil",
+      "scent": "Napa",
+      "inspired_by": null,
+      "size_oz": 2,
+      "retail_url": null,
+      "msrp_usd": 20.00,
+      "retail_price_usd": null,
+      "wholesale_price_usd": 7.00,
+      "invoice_qty": 12,
+      "invoice_line_total_usd": 84.00,
+      "description": "Aromar+ Waterless Fragrance Oil inspired by the wine country of Napa Valley. A sophisticated, warm fragrance designed for use in waterless and ultrasonic diffusers. Note: retail listing not found on aromar.com at time of data collection — details sourced from wholesale invoice.",
+      "caution": "Not safe for skin, bath, or cream purposes.",
+      "compatible_with": ["Waterless diffusers", "Plug-in diffusers", "Ultrasonic diffusers"],
+      "images": [],
+      "tags": ["AromarPlus", "Fragrance Oil", "Waterless"]
+    },
+    {
+      "sku": "AP-1032",
+      "upc": "810122384151",
+      "name": "Aromar Plus Fragrance Oil 60ml — Wild Citrus Grove",
+      "category": "Fragrance Oil",
+      "subcategory": "60ml Aromar Plus Oil",
+      "scent": "Wild Citrus Grove",
+      "inspired_by": null,
+      "size_ml": 60,
+      "retail_url": "https://aromar.com/products/wild-citrus-grove-aromar-plus-diffuser-oil",
+      "msrp_usd": 20.00,
+      "retail_price_usd": 35.00,
+      "wholesale_price_usd": 7.00,
+      "invoice_qty": 6,
+      "invoice_line_total_usd": 42.00,
+      "scent_notes": {
+        "top": ["Orange"],
+        "middle": ["Bay Leaf"],
+        "base": ["Cedarwood"]
+      },
+      "description": "Bring the outdoors into your home with Wild Citrus Grove Diffuser Oil, a refreshing blend designed to energize your space. Combines the sparkling brightness of orange, the herbal spice of bay leaf, and the grounding richness of cedarwood. Creates a long-lasting diffuser fragrance that feels both uplifting and balanced. Perfect for boosting creativity and focus.",
+      "caution": "Not safe for skin, bath, or cream purposes.",
+      "compatible_with": ["Waterless diffusers", "Plug-in diffusers", "Ultrasonic diffusers"],
+      "retail_variants": [
+        { "title": "Single", "price_usd": 35.00 },
+        { "title": "2-Pack", "price_usd": 50.00 },
+        { "title": "3-Pack", "price_usd": 70.00 }
+      ],
+      "images": [
+        "https://cdn.shopify.com/s/files/1/1531/8467/files/AP-1032_2.jpg?v=1769721694",
+        "https://cdn.shopify.com/s/files/1/1531/8467/files/AP-1032_-_V2_Wild_Citrus_Grove.jpg?v=1769721702",
+        "https://cdn.shopify.com/s/files/1/1531/8467/files/A_LINESNaturals1_2_67ae23e5-f7ef-4844-bd2e-8c70c97496ac.jpg?v=1769615566"
+      ],
+      "tags": ["AromarPlus", "Fragrance Oil", "Waterless"]
+    },
+    {
+      "sku": "AP-1033",
+      "upc": "810122384168",
+      "name": "Aromar Plus Fragrance Oil 60ml — Violet Air",
+      "category": "Fragrance Oil",
+      "subcategory": "60ml Aromar Plus Oil",
+      "scent": "Violet Air",
+      "inspired_by": null,
+      "size_ml": 60,
+      "retail_url": "https://aromar.com/products/eucalyptus-whisper-aromar-plus-diffuser-oil-copy",
+      "msrp_usd": 20.00,
+      "retail_price_usd": 35.00,
+      "wholesale_price_usd": 7.00,
+      "invoice_qty": 6,
+      "invoice_line_total_usd": 42.00,
+      "scent_notes": {
+        "top": ["Lavender"],
+        "middle": ["Rosemary"],
+        "base": ["Sandalwood"]
+      },
+      "description": "Violet Air brings a refreshing yet sophisticated balance to your space with its calming floral and herbal blend. The timeless serenity of lavender pairs with the crisp vitality of rosemary, while sandalwood grounds the fragrance with smooth, woody warmth. Ideal for moments of relaxation, focus, or quiet confidence. Helps clear the mind and refresh the spirit, transforming any room into a calm sanctuary.",
+      "caution": "Not safe for skin, bath, or cream purposes.",
+      "compatible_with": ["Waterless diffusers", "Plug-in diffusers", "Ultrasonic diffusers"],
+      "retail_variants": [
+        { "title": "Single", "price_usd": 35.00 },
+        { "title": "2-Pack", "price_usd": 50.00 },
+        { "title": "3-Pack", "price_usd": 70.00 }
+      ],
+      "images": [
+        "https://cdn.shopify.com/s/files/1/1531/8467/files/AP-1033_1.jpg?v=1769614182",
+        "https://cdn.shopify.com/s/files/1/1531/8467/files/AP-1033_-_Violet_Air.jpg?v=1769614205",
+        "https://cdn.shopify.com/s/files/1/1531/8467/files/A_LuxuryPlugIn.jpg?v=1769614213"
+      ],
+      "tags": ["AromarPlus", "Fragrance Oil", "Waterless"]
+    },
+    {
+      "sku": "AP-1036",
+      "upc": "810122384199",
+      "name": "Aromar Plus Fragrance Oil 60ml — Golden Sage",
+      "category": "Fragrance Oil",
+      "subcategory": "60ml Aromar Plus Oil",
+      "scent": "Golden Sage",
+      "inspired_by": null,
+      "size_ml": 60,
+      "retail_url": "https://aromar.com/products/golden-sage-aromar-plus-diffuser-oil",
+      "msrp_usd": 20.00,
+      "retail_price_usd": 35.00,
+      "wholesale_price_usd": 7.00,
+      "invoice_qty": 18,
+      "invoice_line_total_usd": 126.00,
+      "scent_notes": {
+        "top": ["Sage"],
+        "middle": ["Wild Thyme"],
+        "base": ["Vetiver"]
+      },
+      "description": "Golden Sage is an earthy, herbal diffuser oil crafted to soothe, ground, and restore balance to your space. The cleansing aroma of sage blends harmoniously with the savory vibrancy of wild thyme, while vetiver provides a smoky, woody base, creating a warm and mindful fragrance. Ideal for meditation, relaxation, or cultivating a calm and centered home environment.",
+      "caution": "Not safe for skin, bath, or cream purposes.",
+      "compatible_with": ["Waterless diffusers", "Plug-in diffusers", "Ultrasonic diffusers"],
+      "retail_variants": [
+        { "title": "Single", "price_usd": 35.00 },
+        { "title": "2-Pack", "price_usd": 50.00 },
+        { "title": "3-Pack", "price_usd": 70.00 }
+      ],
+      "images": [
+        "https://cdn.shopify.com/s/files/1/1531/8467/files/AP-1036_1.jpg?v=1769621043",
+        "https://cdn.shopify.com/s/files/1/1531/8467/files/AP-1036-V2GoldenSage.jpg?v=1769621050",
+        "https://cdn.shopify.com/s/files/1/1531/8467/files/goldensagelifestyle.jpg?v=1769720006"
+      ],
+      "tags": ["AromarPlus", "Fragrance Oil", "Waterless"]
+    }
+  ],
+  "invoice_summary": {
+    "total_items": 68,
+    "msrp_total_usd": 1759.92,
+    "subtotal_usd": 700.00,
+    "tax_usd": 0.00,
+    "shipping_usd": 0.00,
+    "total_usd": 700.00
+  }
+}

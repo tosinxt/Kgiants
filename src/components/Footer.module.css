@@ -1,0 +1,167 @@
+.footer {
+  margin-top: var(--spacing-120);
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--spacing-64);
+  padding-bottom: var(--spacing-64);
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: var(--spacing-64);
+  margin-bottom: var(--spacing-64);
+}
+
+.brandCol {}
+
+.brandName {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: var(--font-weight-regular);
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  margin-bottom: var(--spacing-16);
+}
+
+.brandTagline {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--font-weight-light);
+  color: var(--color-stone);
+  line-height: 1.65;
+  max-width: 32ch;
+  margin-bottom: var(--spacing-32);
+}
+
+.subscribeRow {
+  display: flex;
+  border-bottom: 1px solid var(--color-ink);
+  padding-bottom: 8px;
+  gap: var(--spacing-12);
+  max-width: 320px;
+}
+
+.subscribeInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--font-weight-light);
+  outline: none;
+  padding: 0;
+}
+
+.subscribeInput::placeholder {
+  color: var(--color-stone-light);
+}
+
+.subscribeBtn {
+  background: transparent;
+  border: none;
+  color: var(--color-ink);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0;
+  transition: opacity 150ms ease-out;
+}
+
+.subscribeBtn:hover { opacity: 0.55; }
+
+.navCol {}
+
+.colHeading {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-stone);
+  margin-bottom: var(--spacing-24);
+}
+
+.navLink {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--font-weight-light);
+  color: var(--color-ink);
+  margin-bottom: var(--spacing-16);
+  text-decoration: none;
+  transition: opacity 150ms ease-out;
+}
+
+.navLink:hover { opacity: 0.55; }
+
+.footerBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--spacing-32);
+  border-top: 1px solid var(--color-border);
+  gap: var(--spacing-24);
+  flex-wrap: wrap;
+}
+
+.copyright {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: var(--font-weight-light);
+  color: var(--color-stone);
+  letter-spacing: 0.02em;
+}
+
+.payments {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-16);
+}
+
+.paymentLabel {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-stone-light);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.paymentBadge {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-stone);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-border);
+  padding: 3px 8px;
+}
+
+@media (max-width: 900px) {
+  .footerGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-48);
+  }
+  .brandCol {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .footerGrid {
+    grid-template-columns: 1fr;
+  }
+  .brandCol {
+    grid-column: span 1;
+  }
+  .footerBottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-16);
+  }
+}

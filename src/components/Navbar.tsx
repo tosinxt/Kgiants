@@ -1,57 +1,57 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { ShoppingBag, User, LogIn } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
-import { useAuth } from '@/context/AuthContext';
+import { useMenu } from '@/context/MenuContext';
 import styles from './Navbar.module.css';
 
 export default function Navbar() {
   const { totalItems, toggleCart } = useCart();
-  const { user } = useAuth();
+  const { toggleMenu } = useMenu();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
-    <header className={styles.navbar}>
-      <Link href="/" className={styles.logo}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img 
-          src="/images/katalon-icon.svg" 
-          alt="KGiants Logo" 
-          style={{ height: '28px', objectFit: 'contain' }} 
-        />
-        <span>KGIANTS</span>
-      </Link>
-
-      <nav className={styles.navLinks}>
-        <Link href="/" className={styles.link}>Shop</Link>
-        <Link href="/categories" className={styles.link}>Categories</Link>
-        <Link href="/contact" className={styles.link}>Contact</Link>
-      </nav>
-
-      <div className={styles.actions}>
-        {user ? (
-          <Link href="/auth" className={styles.actionBtn} aria-label="Profile">
-            <User size={18} />
-            <span className={styles.usernameText}>
-              {user.email?.split('@')[0]}
-            </span>
-          </Link>
-        ) : (
-          <Link href="/auth" className={styles.actionBtn} aria-label="Login">
-            <LogIn size={18} />
-          </Link>
-        )}
-
-        <button 
-          onClick={toggleCart} 
-          className={styles.cartButton} 
-          aria-label="Open cart"
+    <header className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
+      {/* Left — menu trigger */}
+      <div className={styles.navLeft}>
+        <button
+          className={styles.menuBtn}
+          onClick={toggleMenu}
+          aria-label="Open menu"
         >
-          <ShoppingBag size={20} />
-          {totalItems > 0 && (
-            <span className={styles.badge}>{totalItems}</span>
-          )}
+          <div className={styles.menuLines}>
+            <div className={styles.menuLine} style={{ width: '100%' }} />
+            <div className={styles.menuLine} />
+          </div>
+          <span className={styles.menuBtnLabel}>Menu</span>
+        </button>
+      </div>
+
+      {/* Center — wordmark */}
+      <div className={styles.navCenter}>
+        <Link href="/" className={styles.logo}>
+          KGiants
+        </Link>
+      </div>
+
+      {/* Right — cart */}
+      <div className={styles.navRight}>
+        <button
+          onClick={toggleCart}
+          className={styles.cartBtn}
+          aria-label={`Open cart — ${totalItems} items`}
+        >
+          <span className={styles.cartBtnLabel}>Bag</span>
+          <span className={`${styles.cartCount} ${totalItems > 0 ? styles.hasItems : styles.empty}`}>
+            {totalItems}
+          </span>
         </button>
       </div>
     </header>

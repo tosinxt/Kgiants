@@ -1,13 +1,14 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import type { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/lib/supabase';
+import type { User, Session } from '@supabase/supabase-js';
 
 interface AuthContextType {
   user: User | null;
   session: Session | null;
   isLoading: boolean;
+  isAdmin: boolean;
   login: (email: string, password: string) => Promise<void>;
   signup: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
@@ -40,6 +41,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return () => subscription.unsubscribe();
   }, []);
 
+  const isAdmin = user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL ||
+    user?.user_metadata?.role === 'admin';
   const login = async (email: string, password: string) => {
     if (!supabase) throw new Error('Supabase not configured');
     const { error } = await supabase.auth.signInWithPassword({ email, password });
@@ -58,7 +61,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, session, isLoading, login, signup, logout }}>
+    <AuthContext.Provider value={{ user, session, isLoading, isAdmin, login, signup, logout }}>
       {children}
     </AuthContext.Provider>
   );

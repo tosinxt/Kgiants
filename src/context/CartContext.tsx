@@ -16,6 +16,8 @@ type CartContextType = {
   totalItems: number;
   isCartOpen: boolean;
   toggleCart: () => void;
+  isCheckoutOpen: boolean;
+  toggleCheckout: () => void;
 };
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -23,6 +25,7 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -78,6 +81,8 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
   const toggleCart = () => setIsCartOpen((prev) => !prev);
 
+  const toggleCheckout = () => setIsCheckoutOpen((prev) => !prev);
+
   const totalPrice = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -93,6 +98,8 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
         totalItems,
         isCartOpen,
         toggleCart,
+        isCheckoutOpen,
+        toggleCheckout,
       }}
     >
       {children}

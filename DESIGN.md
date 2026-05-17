@@ -1,150 +1,197 @@
-# Moonli — Style Reference
-> Vibrant green digital ledger
+# Subset — Style Reference
+> Organic Canvas, Understated Authority
 
 **Theme:** light
 
-Moonli’s design system conveys a dynamic, fresh identity through a minimalist layout punctuated by a single vibrant green. Text is largely monochromatic in crisp black and soft gray, relying on thoughtful typography and generous spacing for hierarchy. Components are lightweight with substantial rounded corners, particularly prominent in cards and buttons, emphasizing a soft, approachable digital experience. The vivid green accent color is used strategically to highlight key sections and interactive elements, creating a sense of energy and trust without overwhelming the otherwise clean aesthetic.
+Subset embraces a grounded, natural aesthetic, combining the tactile feel of organic materials with a clean, unadorned interface. The visual design prioritizes clear product presentation against a muted, almost oatmeal-colored canvas, punctuated by utilitarian typography and a few carefully chosen, moderately saturated accent colors. Components are minimal and unfussy, focusing on function over adornment, embodying a sense of reliable simplicity. Color is used sparingly, primarily to distinguish states or add a subtle brand signature rather than for bold visual statements.
 
 ## Tokens — Colors
 
 | Name | Value | Token | Role |
 |------|-------|-------|------|
-| Midnight Ink | `#000000` | `--color-midnight-ink` | Primary text, headers, icon strokes, borders, footer background |
-| Soft Cloud | `#f3f3f3` | `--color-soft-cloud` | Card backgrounds, subtle surface elevation |
-| Canvas White | `#ffffff` | `--color-canvas-white` | Page backgrounds, prominent card surfaces, navigation backgrounds |
-| Light Steel | `#e2e2e2` | `--color-light-steel` | Hairline borders, subtle dividers in cards |
-| Muted Stone | `#757575` | `--color-muted-stone` | Secondary text, body copy, subtle decorative borders |
-| Vivacious Green | `#b8ff65` | `--color-vivacious-green` | Hero section background, prominent card backgrounds, brand accent for key sections |
+| Oatmeal Canvas | `#f5f4ee` | `--color-oatmeal-canvas` | Page backgrounds, card surfaces — a soft, natural base |
+| Ink | `#241f20` | `--color-ink` | Primary text, borders, icons, and significant structural elements. Almost black, but with a barely-there warmth |
+| Pure White | `#ffffff` | `--color-pure-white` | Contrasting text colors, selected component backgrounds, input fields, and badge borders |
+| Cool Stone | `#808080` | `--color-cool-stone` | Muted text, secondary icons, and subtle borders |
+| Rich Earth | `#000000` | `--color-rich-earth` | Bold text, specific icon fills, and strong outlines |
+| Deep Forest | `#233735` | `--color-deep-forest` | Prominent button backgrounds and borders for primary actions — a sophisticated, deep green-gray |
+| Mineral Blue | `#6487ba` | `--color-mineral-blue` | Secondary action button backgrounds and borders, link colors — a calm, inviting blue |
+| Spring Bud | `#8bbd78` | `--color-spring-bud` | Decorative icons, borders, and subtle typographic accents for specific elements |
+| Sunset Orange | `#ff965b` | `--color-sunset-orange` | Highlight elements like badges, decorative icons, and rating stars — a vivid, energetic accent |
+| Misty Rose | `#edcdc2` | `--color-misty-rose` | Background for specific content sections or decorative elements — a soft, desaturated blush tone |
+| Olive Green | `#5b7763` | `--color-olive-green` | Background for specific content sections or decorative elements |
+| Dark Plum | `#27293d` | `--color-dark-plum` | Decorative background for featured links |
+| Warm Berry | `#5c2722` | `--color-warm-berry` | Decorative background for featured links |
 
 ## Tokens — Typography
 
-### DM Sans — The primary typeface for all text elements. The range of weights from 400 to 700 allows for clear hierarchy, while varied letter-spacing maintains legibility across different sizes, particularly for prominent headings. · `--font-dm-sans`
-- **Substitute:** system-ui
+### FoundersGrotesk — Used for all body text, navigation elements, buttons, and form labels. Its robust versatility and wide range of weights and sizes make it the system's workhorse, providing a grounded, utilitarian feel with subtle tracking variations for different scales. · `--font-foundersgrotesk`
+- **Substitute:** Inter
 - **Weights:** 400, 500, 700
-- **Sizes:** 14px, 16px, 24px, 38px, 48px, 58px
-- **Line height:** 1.08, 1.13, 1.17, 1.26, 1.45, 1.50, 1.75
-- **Letter spacing:** -0.05em at 58px, -0.03em at 48px, -0.01em at 38px and 24px, 0em at smaller sizes
-- **Role:** The primary typeface for all text elements. The range of weights from 400 to 700 allows for clear hierarchy, while varied letter-spacing maintains legibility across different sizes, particularly for prominent headings.
+- **Sizes:** 13px, 14px, 15px, 16px, 17px, 18px, 20px, 24px
+- **Line height:** 0.90, 1.00, 1.10, 1.20, 1.40, 1.43, 1.46, 1.50, 1.53, 1.60, 1.63
+- **Letter spacing:** 0.0180em, 0.0210em, 0.0240em, 0.0250em, 0.0270em, 0.0280em, 0.0300em, 0.0330em, 0.1000em, 0.1500em
+- **Role:** Used for all body text, navigation elements, buttons, and form labels. Its robust versatility and wide range of weights and sizes make it the system's workhorse, providing a grounded, utilitarian feel with subtle tracking variations for different scales.
+
+### TTRamillas_Light — Exclusively for display headlines and prominent section titles. Its light weight and negative letter-spacing create an elegant and airy contrast to the FoundersGrotesk, conveying authority through refinement rather than bold impact. · `--font-ttramillaslight`
+- **Substitute:** Playfair Display
+- **Weights:** 400
+- **Sizes:** 18px, 20px, 24px, 32px, 40px, 42px
+- **Line height:** 1.00, 1.20, 1.24, 1.29, 1.38, 1.40, 1.53
+- **Letter spacing:** -0.0100em
+- **Role:** Exclusively for display headlines and prominent section titles. Its light weight and negative letter-spacing create an elegant and airy contrast to the FoundersGrotesk, conveying authority through refinement rather than bold impact.
+
+### GTStandard-M — A singular use case as a mono-spaced variant, likely for specific metadata or code-like elements where fixed-width characters are desired. · `--font-gtstandard-m`
+- **Substitute:** Roboto Mono
+- **Weights:** 400
+- **Sizes:** 17px
+- **Line height:** 1.50
+- **Letter spacing:** 0.0250em
+- **Role:** A singular use case as a mono-spaced variant, likely for specific metadata or code-like elements where fixed-width characters are desired.
 
 ### Type Scale
 
 | Role | Size | Line Height | Letter Spacing | Token |
 |------|------|-------------|----------------|-------|
-| caption | 14px | 1.75 | — | `--text-caption` |
-| body-sm | 16px | 1.5 | — | `--text-body-sm` |
-| body | 24px | 1.45 | -0.24px | `--text-body` |
-| subheading | 38px | 1.26 | -0.38px | `--text-subheading` |
-| heading | 48px | 1.17 | -0.48px | `--text-heading` |
-| display | 58px | 1.13 | -0.58px | `--text-display` |
+| caption | 13px | 1.5 | 0.3px | `--text-caption` |
+| heading | 18px | 1.4 | -0.1px | `--text-heading` |
+| heading-lg | 24px | 1.29 | -0.1px | `--text-heading-lg` |
+| display | 42px | 1 | -0.1px | `--text-display` |
 
 ## Tokens — Spacing & Shapes
 
 **Base unit:** 4px
 
-**Density:** comfortable
+**Density:** compact
 
 ### Spacing Scale
 
 | Name | Value | Token |
 |------|-------|-------|
+| 4 | 4px | `--spacing-4` |
+| 8 | 8px | `--spacing-8` |
 | 12 | 12px | `--spacing-12` |
 | 16 | 16px | `--spacing-16` |
 | 20 | 20px | `--spacing-20` |
+| 24 | 24px | `--spacing-24` |
+| 28 | 28px | `--spacing-28` |
+| 32 | 32px | `--spacing-32` |
 | 40 | 40px | `--spacing-40` |
-| 60 | 60px | `--spacing-60` |
-| 80 | 80px | `--spacing-80` |
-| 100 | 100px | `--spacing-100` |
-| 120 | 120px | `--spacing-120` |
-| 184 | 184px | `--spacing-184` |
-| 200 | 200px | `--spacing-200` |
+| 48 | 48px | `--spacing-48` |
+| 64 | 64px | `--spacing-64` |
+| 72 | 72px | `--spacing-72` |
+| 160 | 160px | `--spacing-160` |
 
 ### Border Radius
 
 | Element | Value |
 |---------|-------|
-| tags | 30px |
-| cards | 30px |
-| buttons | 40px |
+| cards | 0px |
+| badges | 0px |
+| inputs | 0px |
+| buttons | 0px |
+| circularElements | 50% |
 
 ### Layout
 
-- **Page max-width:** 1280px
-- **Section gap:** 25px
-- **Card padding:** 20px
-- **Element gap:** 20px
+- **Section gap:** 64px
+- **Card padding:** 16px
+- **Element gap:** 8px
 
 ## Components
 
-### Primary Hero Card
-**Role:** Main introductory content block
+### Primary Action Button
+**Role:** Filled button for main calls to action.
 
-Background is Vivacious Green (#b8ff65), with a strong border-radius of 30px. Padding is substantial, with 112.5px vertically and 20px horizontally. Text is Midnight Ink (#000000).
+Background: Deep Forest (#233735). Text: Pure White (#ffffff). Padding: 16px vertical, 32px horizontal. Border radius: 0px. Typography: FoundersGrotesk, 16px, 400 weight.
 
-### Default Card
-**Role:** General content container
+### Secondary Action Button
+**Role:** Filled button for alternative calls to action.
 
-Background is Canvas White (#ffffff) with a 30px border-radius. Padding is 40px top/bottom and 30px left/right. Has subtle borders and uses Midnight Ink (#000000) for primary text and Muted Stone (#757575) for secondary text.
+Background: Mineral Blue (#6487ba). Text: Pure White (#ffffff). Padding: 16px vertical, 32px horizontal. Border radius: 0px. Typography: FoundersGrotesk, 16px, 400 weight.
 
-### Light Surface Card
-**Role:** Secondary content container, subtle elevation
+### Ghost Button
+**Role:** Outlined button for less prominent actions.
 
-Background is Soft Cloud (#f3f3f3) with a 30px border-radius. Generous padding of 100px on all sides. Used for less prominent content blocks.
+Background: transparent. Text: Ink (#241f20). Border: 1px Ink (#241f20). Padding: 0px. Border radius: 50% for icon-only, 0px for text. Typography: FoundersGrotesk.
 
-### Navigation Link
-**Role:** Top navigation items
+### Informative Badge
+**Role:** Small, distinct label for status or newness.
 
-Black text (Midnight Ink #000000) on a Canvas White (#ffffff) background. Font-weight 400. Text size varies, with 16px being common.
+Background: Sunset Orange (#ff965b). Text: Pure White (#ffffff). Padding: 8px vertical, 10px horizontal. Border radius: 0px. Typography: FoundersGrotesk, 13px, 400 weight.
 
-### Primary Navigation Button
-**Role:** Call to action in navigation
+### Product Card
+**Role:** Container for product listings.
 
-Outline button with a Midnight Ink (#000000) border, 40px border-radius. Text is Midnight Ink (#000000). Padding is 12px vertical and 20px horizontal.
+Background: Oatmeal Canvas (#f5f4ee). Padding: 16px on all sides. Border radius: 0px. No shadow. Content flows within.
+
+### Transparent Content Card
+**Role:** Card with transparent background, often used in hero or overlay contexts.
+
+Background: transparent. Padding: 48px vertical, 16px horizontal. Border radius: 0px. No shadow. Primarily for text and internal elements.
+
+### Text Input
+**Role:** Standard form input field.
+
+Background: Pure White (#ffffff). Text: Ink (#241f20). Border: 1px Ink (#241f20). Padding: 18px vertical, 18px left, 40px right. Border radius: 0px. Placeholder text is in a lighter neutral.
 
 ## Do's and Don'ts
 
 ### Do
-- Prioritize a clean, spacious layout using Canvas White (#ffffff) as the dominant background.
-- Use Vivacious Green (#b8ff65) exclusively as a highly visible accent color for hero sections and key content cards, never for general UI elements.
-- Apply a 30px border-radius consistently to all cards and content blocks, achieving a soft, approachable aesthetic.
-- Use Midnight Ink (#000000) for all main headings and primary text, ensuring strong contrast.
-- Delegate Muted Stone (#757575) for all secondary and body text, providing necessary hierarchy while maintaining readability.
-- Maintain comfortable density with an `elementGap` of 20px and `cardPadding` of 20px.
-- Utilize DM Sans at varying weights and letter-spacings to establish clear typographic hierarchy, especially for larger headlines.
+- Prioritize FoundersGrotesk for all functional text, ensuring precise letter-spacing at different scales to maintain a compact, legible feel.
+- Use TTRamillas_Light for all marketing headlines; its light weight and negative tracking provide an elegant contrast.
+- Maintain a strict 0px border-radius for all component cards, badges, and primary/secondary buttons to preserve the structured, unadorned aesthetic.
+- Apply Oatmeal Canvas (#f5f4ee) as the primary background for all static content areas, grounding the interface in a natural, soft tone.
+- Use Deep Forest (#233735) for filled primary action buttons and Mineral Blue (#6487ba) for secondary actions; these are the core chromatic accents.
+- Separate content sections with ample vertical spacing (64px sectionGap) for visual breathing room, avoiding horizontal dividers between major content blocks.
+- Employ a 50% border-radius for all circular interactive elements and small ghost buttons, creating distinct visual cues.
 
 ### Don't
-- Do not introduce new vivid colors; stick to Vivacious Green (#b8ff65) for all primary accents.
-- Avoid sharp corners; all interactive and content containers should use the prescribed 30px or 40px border-radius.
-- Do not use box-shadows or complex gradients; rely on background color and border-radius for visual distinction.
-- Do not clutter content; ensure generous white space and adhere to the 1280px page max-width.
-- Do not use generic system fonts; always specify DM Sans for all text.
-- Avoid dense text blocks; break content into manageable sections with ample vertical spacing.
-- Do not use a default blue for links; all interactive text should respect the Midnight Ink (#000000) or Muted Stone (#757575) palette.
+- Avoid using drop shadows on any components; the system relies on flat surfaces and clear borders for definition.
+- Do not introduce new typefaces; FoundersGrotesk and TTRamillas_Light are the only approved fonts.
+- Refrain from using gradients for backgrounds or components; the design emphasizes flat, solid colors.
+- Do not use saturated chroma for general text or borders; stick to the neutral palette for UI elements to maintain a muted appearance.
+- Avoid decorative icons or illustrations that are not rendered in Spring Bud (#8bbd78) or Sunset Orange (#ff965b); color accents are reserved and intentional.
+- Do not deviate from the specified padding and margin values; the compact density is carefully calibrated.
+- Never use `box-shadow` for elevation, as this design system eschews overt layering effects.
+
+## Surfaces
+
+| Level | Name | Value | Purpose |
+|-------|------|-------|---------|
+| 1 | Oatmeal Canvas | `#f5f4ee` | Base page background and default card surface. |
+| 2 | Pure White | `#ffffff` | Elevated card backgrounds, input fields, and certain contrasting UI elements. |
 
 ## Imagery
 
-This design system primarily uses outline-style technical illustrations. These are functional yet playful, rendered in a consistent monochromatic palette (Midnight Ink #000000). They serve an explanatory role, breaking up text and visually representing concepts without being decorative. Photography is absent, and the focus remains on UI elements and line-art graphics, contributing to a clean, product-focused, and slightly abstract feel.
+The imagery leans heavily on product photography and lifestyle shots featuring models. Photography is characterized by tight crops for products on white or light backgrounds, emphasizing texture and detail, and lifestyle shots showing people wearing the clothes, often with a natural, candid feel and muted lighting. The overall treatment is realistic and unretouched, celebrating authentic body shapes and natural settings. Icons are minimal, either outlined or filled in achromatic tones, with occasional accents of Spring Bud or Sunset Orange for decorative or functional purposes. The density is mixed; some sections are text-dominant, while product grids are image-heavy, balancing showcase with information.
+
+## Layout
+
+The page primarily uses a max-width contained layout, with content centered. The hero section often features a full-bleed image with an overlaid transparent content card for text and calls to action. Sections generally maintain consistent vertical spacing, creating structured blocks of content. Feature sections commonly use a grid of cards or alternating text-left / image-right arrangements. The navigation is a classic top bar, which appears to be fixed on scroll for persistent access.
 
 ## Agent Prompt Guide
 
-Quick Color Reference:
-- text: #000000
-- background: #ffffff
-- border: #e2e2e2
-- accent: #b8ff65
-- primary action: no distinct CTA color
+Quick Color Reference: 
+text: #241f20
+background: #f5f4ee
+border: #241f20
+accent: #ff965b
+primary action: #233735 (filled action)
 
 Example Component Prompts:
-- Create a Hero Section: Vivacious Green (#b8ff65) background with 30px radius, centered display heading (DM Sans, 58px, 700, -0.58px tracking, #000000), followed by body-sm text (DM Sans, 16px, 400, #000000).
-- Create a Default Card: Canvas White (#ffffff) background, 30px radius, 1px solid Light Steel (#e2e2e2) border, 40px vertical, 30px horizontal padding, with a heading (DM Sans, 38px, 500, -0.38px tracking, #000000) and body-sm text (DM Sans, 16px, 400, #757575).
-- Create a Navigation Button: outlined with a Midnight Ink (#000000) 1px border, 40px border-radius, 12px vertical and 20px horizontal padding, text in Midnight Ink (#000000) at DM Sans 16px (400 weight).
+1. Create a primary action button: background #233735, text #ffffff, 16px vertical/32px horizontal padding, 0px border-radius, FoundersGrotesk 16px weight 400.
+2. Create an informative badge: background #ff965b, text #ffffff, 8px vertical/10px horizontal padding, 0px border-radius, FoundersGrotesk 13px weight 400.
+3. Create a product card: background #f5f4ee, 16px padding on all sides, 0px border-radius.
+4. Create a hero section: full-bleed image with an overlaid transparent card (background rgba(0,0,0,0), 48px vertical/16px horizontal padding) containing a headline in TTRamillas_Light 42px weight 400 color Ink (#241f20) and a secondary action button (background #6487ba, text #ffffff, 16px vertical/32px horizontal padding, 0px border-radius, FoundersGrotesk 16px weight 400).
+5. Create a standard text input: background #ffffff, text #241f20, border 1px #241f20, 18px top/bottom/left padding, 40px right padding, 0px border-radius.
 
 ## Similar Brands
 
-- **Stripe** — Similar emphasis on clean, spacious UI, strong typography, and a strategic use of a single vivid accent color for key elements.
-- **Linear** — Monochromatic interface with crisp text, subtle surface variations, and a focus on functionality over heavy decoration, relying on spacing for hierarchy.
-- **Figma** — Clean, almost entirely interface-driven aesthetic, using a dominant light surface, strong black text, and minimal color only for key interactive states or branding.
-- **Notion** — Reliance on a white canvas and highly legible, functional typography, using subtle grays and minimal color for organizational cues rather than strong branding.
-- **Webflow** — Modern design language featuring generous whitespace, focused typography, and a single strong brand accent color that pops against a largely neutral background.
+- **Kotn** — Shares a focus on organic materials, muted color palettes, and a clean, product-focused e-commerce experience.
+- **Everlane** — Similar emphasis on essential, quality basics with an understated and transparent brand aesthetic.
+- **CUUP** — Utilizes a clean, white-space heavy layout with focused product photography and a minimalist typographic approach.
+- **Brooklinen** — Employs an achromatic visual style with an occasional soft accent color, simple product presentation, and classic typography.
 
 ## Quick Start
 
@@ -153,33 +200,38 @@ Example Component Prompts:
 ```css
 :root {
   /* Colors */
-  --color-midnight-ink: #000000;
-  --color-soft-cloud: #f3f3f3;
-  --color-canvas-white: #ffffff;
-  --color-light-steel: #e2e2e2;
-  --color-muted-stone: #757575;
-  --color-vivacious-green: #b8ff65;
+  --color-oatmeal-canvas: #f5f4ee;
+  --color-ink: #241f20;
+  --color-pure-white: #ffffff;
+  --color-cool-stone: #808080;
+  --color-rich-earth: #000000;
+  --color-deep-forest: #233735;
+  --color-mineral-blue: #6487ba;
+  --color-spring-bud: #8bbd78;
+  --color-sunset-orange: #ff965b;
+  --color-misty-rose: #edcdc2;
+  --color-olive-green: #5b7763;
+  --color-dark-plum: #27293d;
+  --color-warm-berry: #5c2722;
 
   /* Typography — Font Families */
-  --font-dm-sans: 'DM Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-foundersgrotesk: 'FoundersGrotesk', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-ttramillaslight: 'TTRamillas_Light', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-gtstandard-m: 'GTStandard-M', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   /* Typography — Scale */
-  --text-caption: 14px;
-  --leading-caption: 1.75;
-  --text-body-sm: 16px;
-  --leading-body-sm: 1.5;
-  --text-body: 24px;
-  --leading-body: 1.45;
-  --tracking-body: -0.24px;
-  --text-subheading: 38px;
-  --leading-subheading: 1.26;
-  --tracking-subheading: -0.38px;
-  --text-heading: 48px;
-  --leading-heading: 1.17;
-  --tracking-heading: -0.48px;
-  --text-display: 58px;
-  --leading-display: 1.13;
-  --tracking-display: -0.58px;
+  --text-caption: 13px;
+  --leading-caption: 1.5;
+  --tracking-caption: 0.3px;
+  --text-heading: 18px;
+  --leading-heading: 1.4;
+  --tracking-heading: -0.1px;
+  --text-heading-lg: 24px;
+  --leading-heading-lg: 1.29;
+  --tracking-heading-lg: -0.1px;
+  --text-display: 42px;
+  --leading-display: 1;
+  --tracking-display: -0.1px;
 
   /* Typography — Weights */
   --font-weight-regular: 400;
@@ -188,31 +240,35 @@ Example Component Prompts:
 
   /* Spacing */
   --spacing-unit: 4px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
   --spacing-12: 12px;
   --spacing-16: 16px;
   --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
   --spacing-40: 40px;
-  --spacing-60: 60px;
-  --spacing-80: 80px;
-  --spacing-100: 100px;
-  --spacing-120: 120px;
-  --spacing-184: 184px;
-  --spacing-200: 200px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-72: 72px;
+  --spacing-160: 160px;
 
   /* Layout */
-  --page-max-width: 1280px;
-  --section-gap: 25px;
-  --card-padding: 20px;
-  --element-gap: 20px;
-
-  /* Border Radius */
-  --radius-3xl: 30px;
-  --radius-3xl-2: 40px;
+  --section-gap: 64px;
+  --card-padding: 16px;
+  --element-gap: 8px;
 
   /* Named Radii */
-  --radius-tags: 30px;
-  --radius-cards: 30px;
-  --radius-buttons: 40px;
+  --radius-cards: 0px;
+  --radius-badges: 0px;
+  --radius-inputs: 0px;
+  --radius-buttons: 0px;
+  --radius-circularelements: 50%;
+
+  /* Surfaces */
+  --surface-oatmeal-canvas: #f5f4ee;
+  --surface-pure-white: #ffffff;
 }
 ```
 
@@ -221,48 +277,52 @@ Example Component Prompts:
 ```css
 @theme {
   /* Colors */
-  --color-midnight-ink: #000000;
-  --color-soft-cloud: #f3f3f3;
-  --color-canvas-white: #ffffff;
-  --color-light-steel: #e2e2e2;
-  --color-muted-stone: #757575;
-  --color-vivacious-green: #b8ff65;
+  --color-oatmeal-canvas: #f5f4ee;
+  --color-ink: #241f20;
+  --color-pure-white: #ffffff;
+  --color-cool-stone: #808080;
+  --color-rich-earth: #000000;
+  --color-deep-forest: #233735;
+  --color-mineral-blue: #6487ba;
+  --color-spring-bud: #8bbd78;
+  --color-sunset-orange: #ff965b;
+  --color-misty-rose: #edcdc2;
+  --color-olive-green: #5b7763;
+  --color-dark-plum: #27293d;
+  --color-warm-berry: #5c2722;
 
   /* Typography */
-  --font-dm-sans: 'DM Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-foundersgrotesk: 'FoundersGrotesk', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-ttramillaslight: 'TTRamillas_Light', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-gtstandard-m: 'GTStandard-M', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   /* Typography — Scale */
-  --text-caption: 14px;
-  --leading-caption: 1.75;
-  --text-body-sm: 16px;
-  --leading-body-sm: 1.5;
-  --text-body: 24px;
-  --leading-body: 1.45;
-  --tracking-body: -0.24px;
-  --text-subheading: 38px;
-  --leading-subheading: 1.26;
-  --tracking-subheading: -0.38px;
-  --text-heading: 48px;
-  --leading-heading: 1.17;
-  --tracking-heading: -0.48px;
-  --text-display: 58px;
-  --leading-display: 1.13;
-  --tracking-display: -0.58px;
+  --text-caption: 13px;
+  --leading-caption: 1.5;
+  --tracking-caption: 0.3px;
+  --text-heading: 18px;
+  --leading-heading: 1.4;
+  --tracking-heading: -0.1px;
+  --text-heading-lg: 24px;
+  --leading-heading-lg: 1.29;
+  --tracking-heading-lg: -0.1px;
+  --text-display: 42px;
+  --leading-display: 1;
+  --tracking-display: -0.1px;
 
   /* Spacing */
+  --spacing-4: 4px;
+  --spacing-8: 8px;
   --spacing-12: 12px;
   --spacing-16: 16px;
   --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
   --spacing-40: 40px;
-  --spacing-60: 60px;
-  --spacing-80: 80px;
-  --spacing-100: 100px;
-  --spacing-120: 120px;
-  --spacing-184: 184px;
-  --spacing-200: 200px;
-
-  /* Border Radius */
-  --radius-3xl: 30px;
-  --radius-3xl-2: 40px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-72: 72px;
+  --spacing-160: 160px;
 }
 ```

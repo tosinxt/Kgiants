@@ -1,86 +1,113 @@
 .card {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  background: var(--color-canvas-white);
-  border: 1px solid var(--color-light-steel);
-  border-radius: 30px;
-  padding: 30px 24px;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  transition: opacity 0.25s ease;
 }
 
 .card:hover {
-  transform: translateY(-4px);
+  opacity: 0.88;
 }
 
 .imageWrapper {
   position: relative;
-  aspect-ratio: 4/5;
+  width: 100%;
+  aspect-ratio: 3/4;
   overflow: hidden;
-  background: var(--color-soft-cloud);
-  border-radius: 20px;
-  margin-bottom: 1.5rem;
-  border: 1px solid var(--color-light-steel);
+  background: var(--color-white);
+  border-radius: 0;
+  margin-bottom: var(--spacing-16);
 }
 
 .image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  mix-blend-mode: multiply;
-  transition: transform 0.6s ease;
+  object-fit: contain;
+  object-position: center;
+  padding: var(--spacing-20);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card:hover .image {
   transform: scale(1.04);
 }
 
-.categoryBadge {
+.serialCode {
   position: absolute;
-  top: 16px;
-  left: 16px;
+  top: var(--spacing-12);
+  left: var(--spacing-12);
   z-index: 10;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-stone-light);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 .content {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  margin-bottom: 1.5rem;
+  gap: var(--spacing-4);
+  padding: 0 2px;
 }
 
 .name {
-  font-family: var(--font-dm-sans);
+  font-family: var(--font-display);
   font-size: 20px;
-  font-weight: var(--font-weight-medium);
-  color: var(--color-midnight-ink);
-  letter-spacing: -0.2px;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-ink);
   line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.scent {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--color-stone);
+  letter-spacing: 0.01em;
+}
+
+.inspiredBy {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-stone-light);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 2px;
 }
 
 .price {
-  font-family: var(--font-dm-sans);
-  font-size: 16px;
-  color: var(--color-muted-stone);
-  letter-spacing: -0.16px;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--font-weight-light);
+  color: var(--color-stone);
+  margin-top: 2px;
 }
 
 .footer {
-  margin-top: auto;
+  margin-top: var(--spacing-12);
 }
 
 .addButton {
   width: 100%;
-  background: transparent;
-  color: var(--color-midnight-ink);
-  border: 1px solid var(--color-midnight-ink);
+  background: var(--color-ink);
+  color: var(--color-cream);
+  border: 1px solid var(--color-ink);
   border-radius: var(--radius-buttons);
-  padding: 12px;
+  padding: 12px var(--spacing-24);
+  font-size: 11px;
+  font-family: var(--font-body);
   font-weight: var(--font-weight-medium);
-  font-size: 14px;
-  font-family: var(--font-dm-sans);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: background-color 180ms ease-out, color 180ms ease-out;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -88,6 +115,6 @@
 }
 
 .addButton:hover {
-  background: var(--color-midnight-ink);
-  color: var(--color-canvas-white);
+  background: transparent;
+  color: var(--color-ink);
 }
