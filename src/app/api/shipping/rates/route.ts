@@ -84,7 +84,6 @@ export async function POST(req: NextRequest) {
 
     const shipment = await shipmentRes.json();
     const rates: ShippingRate[] = (shipment.rates || [])
-      .filter((r: any) => r.available_to_buy)
       .slice(0, 3)
       .map((r: any) => ({
         id: r.object_id,

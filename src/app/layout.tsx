@@ -46,13 +46,15 @@ export default function RootLayout({
               {/* Menu is fixed overlay — lives at root, not inside layout-wrapper */}
               <MenuSidebar />
 
+              {/* Cart is fixed overlay — lives at root, not inside layout-wrapper */}
+              <CartSidebar />
+
               <Navbar />
               <div className="layout-wrapper">
                 <LayoutInner>
                   <main className="main-content">
                     {children}
                   </main>
-                  <CartSidebar />
                 </LayoutInner>
               </div>
               <CheckoutDialog />

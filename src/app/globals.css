@@ -1,20 +1,23 @@
 :root {
   /* ── Palette ─────────────────────────────────────────────────── */
-  --color-cream:        #FAFAF7;   /* page background */
-  --color-ink:          #1A1714;   /* near-black, primary text */
-  --color-stone:        #78716C;   /* secondary text */
-  --color-stone-light:  #A8A29E;   /* tertiary text, borders */
-  --color-gold:         #C6A96A;   /* single accent */
-  --color-gold-light:   #E8D5A8;   /* accent tint */
-  --color-white:        #FFFFFF;   /* card surface */
-  --color-border:       rgba(26, 23, 20, 0.12);
+  --color-cream:          #FFFFFF;          /* page background */
+  --color-ink:            #121212;          /* near-black, primary text */
+  --color-stone:          #4D6B5A;          /* secondary text, emerald-tinted */
+  --color-stone-light:    #8FAD9C;          /* tertiary text, light green */
+  --color-gold:           #B8963E;          /* brass accent */
+  --color-gold-light:     #D4B87A;          /* brass tint */
+  --color-white:          #FFFFFF;          /* card surface */
+  --color-emerald:        #1B5E3B;          /* primary emerald */
+  --color-emerald-deep:   #0F3D25;          /* deep emerald */
+  --color-emerald-light:  #EBF5F0;          /* emerald tint */
+  --color-border:         rgba(27, 94, 59, 0.15);
 
   /* Legacy aliases (used in existing components — maps to new system) */
   --color-oatmeal-canvas: var(--color-cream);
   --color-pure-white:     var(--color-white);
   --color-cool-stone:     var(--color-stone);
-  --color-deep-forest:    var(--color-ink);
-  --color-mineral-blue:   var(--color-gold);
+  --color-deep-forest:    var(--color-emerald);
+  --color-mineral-blue:   var(--color-emerald);
   --color-rich-earth:     var(--color-ink);
 
   /* ── Typography ──────────────────────────────────────────────── */
@@ -97,7 +100,7 @@
 }
 
 *:focus-visible {
-  outline: 1px solid var(--color-gold);
+  outline: 1px solid var(--color-emerald);
   outline-offset: 2px;
 }
 
@@ -247,9 +250,9 @@ details.pdp-accordion:not([open]) summary .pdp-accordion-icon::after {
 }
 
 .btn-gold {
-  background: var(--color-gold);
-  border: 1px solid var(--color-gold);
-  color: var(--color-ink);
+  background: var(--color-emerald);
+  border: 1px solid var(--color-emerald);
+  color: var(--color-cream);
   border-radius: var(--radius-buttons);
   padding: 14px 32px;
   font-family: var(--font-body);
@@ -325,7 +328,8 @@ details.pdp-accordion:not([open]) summary .pdp-accordion-icon::after {
 
 /* ── Badges ──────────────────────────────────────────────────────── */
 .badge-bestseller {
-  background: var(--color-gold);
+  background: var(--color-emerald);
+  color: var(--color-cream) !important;
   border: none;
   border-radius: 0;
   padding: 4px 10px;
@@ -346,7 +350,7 @@ details.pdp-accordion:not([open]) summary .pdp-accordion-icon::after {
   margin: 0 auto;
   padding: 0 var(--spacing-40);
   padding-top: var(--navbar-height);
-  overflow-x: hidden;
+  /* overflow-x: hidden removed — breaks position:sticky on full-bleed sections */
 }
 
 .layout-inner {
@@ -375,13 +379,6 @@ details.pdp-accordion:not([open]) summary .pdp-accordion-icon::after {
   }
 }
 
-.layout-inner.menu-open {
-  transform: translateX(calc(var(--sidebar-width) + var(--spacing-32)));
-}
-
-.layout-inner.cart-open {
-  transform: translateX(calc(-1 * var(--sidebar-width) - var(--spacing-32)));
-}
 
 .main-content {
   flex: 0 0 100%;
@@ -400,9 +397,6 @@ details.pdp-accordion:not([open]) summary .pdp-accordion-icon::after {
     transform: translateX(calc(100vw - 32px)) !important;
   }
 
-  .layout-inner.cart-open {
-    transform: translateX(calc(-100vw + 64px)) !important;
-  }
 }
 
 /* ── Mobile Sidebar Overlay ──────────────────────────────────────── */

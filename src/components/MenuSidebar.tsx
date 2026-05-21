@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Link from 'next/link';
-import { X } from 'lucide-react';
-import { useMenu } from '@/context/MenuContext';
-import styles from './MenuSidebar.module.css';
+import React from "react";
+import Link from "next/link";
+import { X } from "lucide-react";
+import { useMenu } from "@/context/MenuContext";
+import styles from "./MenuSidebar.module.css";
 
 const NAV_LINKS = [
-  { href: '/', label: 'Home' },
-  { href: '/shop', label: 'Shop All' },
-  { href: '/shop?category=Waterless+Diffuser', label: 'Diffusers' },
-  { href: '/shop?category=Fragrance+Oil', label: 'Fragrance Oils' },
-  { href: '/contact', label: 'Contact' },
+  { href: "/", label: "Home" },
+  { href: "/shop", label: "Shop All" },
+  { href: "/shop?category=Waterless+Diffuser", label: "Diffusers" },
+  { href: "/shop?category=Fragrance+Oil", label: "Fragrance Oils" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function MenuSidebar() {
@@ -19,15 +19,12 @@ export default function MenuSidebar() {
 
   return (
     <div
-      className={`${styles.overlay} ${isMenuOpen ? styles.isOpen : ''}`}
+      className={`${styles.overlay} ${isMenuOpen ? styles.isOpen : ""}`}
       aria-modal="true"
       role="dialog"
       aria-label="Navigation menu"
     >
-      {/* Left half — click to close */}
-      <div className={styles.left} onClick={closeMenu} aria-hidden="true" />
-
-      {/* Right half — menu panel */}
+      {/* Left half — menu panel */}
       <div className={styles.panel}>
         <div className={styles.panelTop}>
           <span className={styles.panelBrand}>KGiants</span>
@@ -56,15 +53,26 @@ export default function MenuSidebar() {
 
         <div className={styles.footer}>
           <div className={styles.footerCol}>
-            <Link href="#" className={styles.footerLink}>Instagram</Link>
-            <Link href="#" className={styles.footerLink}>Pinterest</Link>
+            <Link href="#" className={styles.footerLink}>
+              Instagram
+            </Link>
+            <Link href="#" className={styles.footerLink}>
+              Pinterest
+            </Link>
           </div>
           <div className={`${styles.footerCol} ${styles.right}`}>
-            <Link href="#" className={styles.footerLink}>Terms</Link>
-            <Link href="#" className={styles.footerLink}>Privacy</Link>
+            <Link href="#" className={styles.footerLink}>
+              Terms
+            </Link>
+            <Link href="#" className={styles.footerLink}>
+              Privacy
+            </Link>
           </div>
         </div>
       </div>
+
+      {/* Right half — dimmed backdrop, click to close */}
+      <div className={styles.backdrop} onClick={closeMenu} aria-hidden="true" />
     </div>
   );
 }
