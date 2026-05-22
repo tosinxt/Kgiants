@@ -9,63 +9,60 @@ import styles from "./Navbar.module.css";
 export default function Navbar() {
   const { totalItems, isCartOpen, toggleCart } = useCart();
   const { isMenuOpen, toggleMenu, closeMenu } = useMenu();
-
-  const handleMenuClick = () => {
-    if (isCartOpen) toggleCart(); // close cart first
-    toggleMenu();
-  };
-
-  const handleCartClick = () => {
-    if (isMenuOpen) closeMenu(); // close menu first
-    toggleCart();
-  };
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 8);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const handleCartClick = () => {
+    if (isMenuOpen) closeMenu();
+    toggleCart();
+  };
+
   return (
     <header className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
-      {/* Left — menu trigger */}
+
+      {/* Left — menu toggle */}
       <div className={styles.navLeft}>
         <button
-          className={styles.menuBtn}
-          onClick={handleMenuClick}
-          aria-label="Open menu"
+          className={styles.iconBtn}
+          onClick={toggleMenu}
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isMenuOpen}
         >
           <div className={styles.menuLines}>
-            <div className={styles.menuLine} style={{ width: "100%" }} />
-            <div className={styles.menuLine} />
+            <span className={`${styles.menuLine} ${isMenuOpen ? styles.menuLineOpen1 : ""}`} />
+            <span className={`${styles.menuLine} ${isMenuOpen ? styles.menuLineOpen2 : ""}`} />
           </div>
-          <span className={styles.menuBtnLabel}>Menu</span>
         </button>
       </div>
 
       {/* Center — wordmark */}
       <div className={styles.navCenter}>
-        <Link href="/" className={styles.logo}>
-          KGiants
-        </Link>
+        <Link href="/" className={styles.logo}>KGiants</Link>
       </div>
 
       {/* Right — cart */}
       <div className={styles.navRight}>
         <button
           onClick={handleCartClick}
-          className={styles.cartBtn}
-          aria-label={`Open cart — ${totalItems} items`}
+          className={styles.iconBtn}
+          aria-label={`Open cart, ${totalItems} item${totalItems !== 1 ? 's' : ''}`}
         >
-          <span className={styles.cartBtnLabel}>Bag</span>
-          <span
-            className={`${styles.cartCount} ${totalItems > 0 ? styles.hasItems : styles.empty}`}
-          >
-            {totalItems}
-          </span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <path d="M16 10a4 4 0 0 1-8 0" />
+          </svg>
+          {totalItems > 0 && (
+            <span className={styles.cartBadge}>{totalItems}</span>
+          )}
         </button>
       </div>
+
     </header>
   );
 }

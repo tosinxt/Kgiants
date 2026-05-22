@@ -1,16 +1,17 @@
 :root {
-  /* ── Palette ─────────────────────────────────────────────────── */
-  --color-cream:          #FFFFFF;          /* page background */
-  --color-ink:            #121212;          /* near-black, primary text */
-  --color-stone:          #4D6B5A;          /* secondary text, emerald-tinted */
-  --color-stone-light:    #8FAD9C;          /* tertiary text, light green */
-  --color-gold:           #B8963E;          /* brass accent */
-  --color-gold-light:     #D4B87A;          /* brass tint */
+  /* ── Palette — Wise design language ─────────────────────────── */
+  --color-cream:          #F9FBF7;          /* Wise off-white (Forest Green 8% tint) */
+  --color-ink:            #0E0F0C;          /* Wise content primary */
+  --color-stone:          #454745;          /* Wise content secondary */
+  --color-stone-light:    #6A6C6A;          /* Wise content tertiary */
+  --color-gold:           #B8963E;          /* warm secondary accent */
+  --color-gold-light:     #D4B87A;          /* warm tint */
   --color-white:          #FFFFFF;          /* card surface */
-  --color-emerald:        #1B5E3B;          /* primary emerald */
-  --color-emerald-deep:   #0F3D25;          /* deep emerald */
-  --color-emerald-light:  #EBF5F0;          /* emerald tint */
-  --color-border:         rgba(27, 94, 59, 0.15);
+  --color-emerald:        #163300;          /* Wise Forest Green — nav, primary CTAs */
+  --color-emerald-accent: #9FE870;          /* Wise Bright Green — highlights, badges */
+  --color-emerald-deep:   #0A1F00;          /* deeper Forest Green */
+  --color-emerald-light:  #E8F7DE;          /* Bright Green 12% tint */
+  --color-border:         rgba(22, 51, 0, 0.12);
 
   /* Legacy aliases (used in existing components — maps to new system) */
   --color-oatmeal-canvas: var(--color-cream);
@@ -20,26 +21,26 @@
   --color-mineral-blue:   var(--color-emerald);
   --color-rich-earth:     var(--color-ink);
 
-  /* ── Typography ──────────────────────────────────────────────── */
-  --font-display: var(--font-display, 'Cormorant Garamond', 'Georgia', serif);
-  --font-body:    var(--font-body, 'Jost', ui-sans-serif, system-ui, sans-serif);
+  /* ── Typography — Wise design language ──────────────────────── */
+  --font-display: var(--font-outfit, 'Outfit', ui-sans-serif, system-ui, sans-serif);
+  --font-body:    var(--font-outfit, 'Outfit', ui-sans-serif, system-ui, sans-serif);
 
   /* Legacy font aliases */
   --font-foundersgrotesk: var(--font-body);
   --font-ttramillaslight: var(--font-display);
   --font-gtstandard-m:    var(--font-body);
-  /* Type scale */
+  /* Type scale — Wise-aligned */
   --text-caption:       12px;
-  --text-body:          15px;
-  --text-body-lg:       17px;
+  --text-body:          14px;
+  --text-body-lg:       16px;
   --text-heading:       22px;
-  --text-heading-lg:    32px;
-  --text-display:       56px;
-  --text-display-xl:    80px;
+  --text-heading-lg:    26px;
+  --text-display:       40px;
+  --text-display-xl:    64px;
 
-  --leading-body:       1.65;
-  --leading-display:    1.05;
-  --tracking-wide:      0.12em;
+  --leading-body:       1.57;
+  --leading-display:    0.85;
+  --tracking-wide:      0.015em;
 
   /* Weights */
   --font-weight-light:   300;
@@ -58,6 +59,7 @@
   --spacing-28: 28px;
   --spacing-32: 32px;
   --spacing-40: 40px;
+  --page-padding: var(--spacing-64);
   --spacing-48: 48px;
   --spacing-64: 64px;
   --spacing-72: 72px;
@@ -73,17 +75,19 @@
   --spacing-26: 26px;
   --spacing-27: 27px;
 
-  /* ── Radii ───────────────────────────────────────────────────── */
-  --radius-cards:   0px;
-  --radius-badges:  0px;
-  --radius-inputs:  2px;
-  --radius-buttons: 2px;
-  --radius-lg:      0px;
-  --radius-default: 0px;
+  /* ── Radii — Wise desktop scale ─────────────────────────────── */
+  --radius-cards:   20px;
+  --radius-badges:  100px;
+  --radius-inputs:  16px;
+  --radius-buttons: 100px;
+  --radius-lg:      30px;
+  --radius-default: 20px;
 
   /* ── Layout ──────────────────────────────────────────────────── */
+  --announcement-bar-height: 40px;
   --navbar-height:   56px;
-  --page-max-width:  1600px;
+  --header-height: calc(var(--announcement-bar-height) + var(--navbar-height));
+  --page-max-width:  1800px;
   --section-gap:     80px;
   --card-padding:    20px;
   --element-gap:     8px;
@@ -124,10 +128,19 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-weight-semibold);
   color: var(--color-ink);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   line-height: var(--leading-display);
+  text-wrap: balance;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 a {
@@ -178,21 +191,21 @@ details.pdp-accordion:not([open]) summary .pdp-accordion-icon::after {
   padding: var(--spacing-120) 0;
 }
 
-/* ── Buttons ─────────────────────────────────────────────────────── */
+/* ── Buttons — Wise design language ──────────────────────────────── */
 
 .btn-primary {
   background: var(--color-ink);
-  border: 1px solid var(--color-ink);
+  border: 1.5px solid var(--color-ink);
   color: var(--color-cream);
   border-radius: var(--radius-buttons);
-  padding: 14px 32px;
+  padding: 13px 28px;
+  min-height: 48px;
   font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: var(--font-weight-medium);
+  font-size: var(--text-body-lg);
+  font-weight: var(--font-weight-semibold);
   letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
   cursor: pointer;
-  transition: background-color 180ms ease-out, color 180ms ease-out;
+  transition: background-color 180ms ease-out, color 180ms ease-out, border-color 180ms ease-out;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -205,17 +218,17 @@ details.pdp-accordion:not([open]) summary .pdp-accordion-icon::after {
 
 .btn-contrast {
   background: var(--color-ink);
-  border: 1px solid var(--color-ink);
+  border: 1.5px solid var(--color-ink);
   color: var(--color-cream);
   border-radius: var(--radius-buttons);
-  padding: 14px 32px;
+  padding: 13px 28px;
+  min-height: 48px;
   font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: var(--font-weight-medium);
+  font-size: var(--text-body-lg);
+  font-weight: var(--font-weight-semibold);
   letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
   cursor: pointer;
-  transition: background-color 180ms ease-out, color 180ms ease-out;
+  transition: background-color 180ms ease-out, color 180ms ease-out, border-color 180ms ease-out;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -228,15 +241,15 @@ details.pdp-accordion:not([open]) summary .pdp-accordion-icon::after {
 
 .btn-ghost {
   background: transparent;
-  border: 1px solid var(--color-ink);
+  border: 1.5px solid var(--color-ink);
   color: var(--color-ink);
   border-radius: var(--radius-buttons);
-  padding: 14px 32px;
+  padding: 13px 28px;
+  min-height: 48px;
   font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: var(--font-weight-medium);
+  font-size: var(--text-body-lg);
+  font-weight: var(--font-weight-semibold);
   letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
   cursor: pointer;
   transition: background-color 180ms ease-out, color 180ms ease-out;
   display: inline-flex;
@@ -249,17 +262,18 @@ details.pdp-accordion:not([open]) summary .pdp-accordion-icon::after {
   color: var(--color-cream);
 }
 
+/* Forest Green primary — Wise's signature CTA */
 .btn-gold {
   background: var(--color-emerald);
-  border: 1px solid var(--color-emerald);
+  border: 1.5px solid var(--color-emerald);
   color: var(--color-cream);
   border-radius: var(--radius-buttons);
-  padding: 14px 32px;
+  padding: 13px 28px;
+  min-height: 48px;
   font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: var(--font-weight-medium);
+  font-size: var(--text-body-lg);
+  font-weight: var(--font-weight-semibold);
   letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
   cursor: pointer;
   transition: opacity 180ms ease-out;
   display: inline-flex;
@@ -271,15 +285,15 @@ details.pdp-accordion:not([open]) summary .pdp-accordion-icon::after {
 
 .btn-subtle {
   background: transparent;
-  border: 1px solid var(--color-border);
+  border: 1.5px solid var(--color-border);
   color: var(--color-stone);
   border-radius: var(--radius-buttons);
-  padding: 14px 32px;
+  padding: 13px 28px;
+  min-height: 48px;
   font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: var(--font-weight-medium);
+  font-size: var(--text-body-lg);
+  font-weight: var(--font-weight-semibold);
   letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
   cursor: pointer;
   transition: border-color 180ms ease-out, color 180ms ease-out;
   display: inline-flex;
@@ -299,6 +313,7 @@ details.pdp-accordion:not([open]) summary .pdp-accordion-icon::after {
   padding: 0;
   font-family: var(--font-body);
   font-size: var(--text-body);
+  font-weight: var(--font-weight-semibold);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -310,15 +325,15 @@ details.pdp-accordion:not([open]) summary .pdp-accordion-icon::after {
 
 .btn-solid {
   background: transparent;
-  border: 1px solid var(--color-ink);
+  border: 1.5px solid var(--color-ink);
   color: var(--color-ink);
   border-radius: var(--radius-buttons);
-  padding: 14px 32px;
+  padding: 13px 28px;
+  min-height: 48px;
   font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: var(--font-weight-medium);
+  font-size: var(--text-body-lg);
+  font-weight: var(--font-weight-semibold);
   letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -328,17 +343,15 @@ details.pdp-accordion:not([open]) summary .pdp-accordion-icon::after {
 
 /* ── Badges ──────────────────────────────────────────────────────── */
 .badge-bestseller {
-  background: var(--color-emerald);
-  color: var(--color-cream) !important;
+  background: var(--color-emerald-accent);
+  color: var(--color-emerald) !important;
   border: none;
-  border-radius: 0;
-  padding: 4px 10px;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-ink);
+  border-radius: var(--radius-badges);
+  padding: 4px 12px;
+  font-size: 11px;
+  letter-spacing: 0.01em;
   font-family: var(--font-body);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-semibold);
   display: inline-block;
 }
 
@@ -348,9 +361,17 @@ details.pdp-accordion:not([open]) summary .pdp-accordion-icon::after {
   width: 100%;
   max-width: var(--page-max-width);
   margin: 0 auto;
-  padding: 0 var(--spacing-40);
-  padding-top: var(--navbar-height);
+  padding: 0 var(--spacing-64);
+  padding-top: var(--header-height);
   /* overflow-x: hidden removed — breaks position:sticky on full-bleed sections */
+}
+
+@media (min-width: 1600px) {
+  :root { --page-padding: var(--spacing-96); }
+  .layout-wrapper {
+    padding-left: var(--spacing-96);
+    padding-right: var(--spacing-96);
+  }
 }
 
 .layout-inner {
@@ -388,35 +409,9 @@ details.pdp-accordion:not([open]) summary .pdp-accordion-icon::after {
 }
 
 @media (max-width: 900px) {
+  :root { --page-padding: var(--spacing-20); }
   .layout-wrapper {
     padding: 0 var(--spacing-20);
-    padding-top: calc(var(--navbar-height) + var(--spacing-16));
-  }
-
-  .layout-inner.menu-open {
-    transform: translateX(calc(100vw - 32px)) !important;
-  }
-
-}
-
-/* ── Mobile Sidebar Overlay ──────────────────────────────────────── */
-.sidebar-overlay {
-  display: none;
-}
-
-@media (max-width: 900px) {
-  .sidebar-overlay {
-    display: block;
-    position: absolute;
-    inset: 0;
-    background-color: rgba(26, 23, 20, 0.4);
-    z-index: 999;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-  }
-  .sidebar-overlay.active {
-    opacity: 1;
-    visibility: visible;
+    padding-top: var(--header-height);
   }
 }

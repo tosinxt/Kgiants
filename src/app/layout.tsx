@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Jost } from "next/font/google";
+import { Outfit } from "next/font/google";
 import { Toaster } from 'react-hot-toast';
 import { CartProvider } from "@/context/CartContext";
 import { AuthProvider } from "@/context/AuthContext";
 import { MenuProvider } from "@/context/MenuContext";
 import Navbar from "@/components/Navbar";
+import AnnouncementBar from "@/components/AnnouncementBar";
 import CartSidebar from "@/components/CartSidebar";
 import MenuSidebar from "@/components/MenuSidebar";
 import LayoutInner from "@/components/LayoutInner";
@@ -12,18 +13,10 @@ import CookieBanner from "@/components/CookieBanner";
 import CheckoutDialog from "@/components/CheckoutDialog";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-display",
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  style: ["normal", "italic"],
-  display: "swap",
-});
-
-const jost = Jost({
-  variable: "--font-body",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap",
 });
 
@@ -38,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${jost.variable}`}>
+    <html lang="en" className={outfit.variable}>
       <body>
         <AuthProvider>
           <CartProvider>
@@ -49,6 +42,7 @@ export default function RootLayout({
               {/* Cart is fixed overlay — lives at root, not inside layout-wrapper */}
               <CartSidebar />
 
+              <AnnouncementBar />
               <Navbar />
               <div className="layout-wrapper">
                 <LayoutInner>

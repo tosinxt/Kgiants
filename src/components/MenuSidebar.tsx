@@ -1,78 +1,23 @@
 "use client";
 
-import React from "react";
-import Link from "next/link";
-import { X } from "lucide-react";
 import { useMenu } from "@/context/MenuContext";
-import styles from "./MenuSidebar.module.css";
-
-const NAV_LINKS = [
-  { href: "/", label: "Home" },
-  { href: "/shop", label: "Shop All" },
-  { href: "/shop?category=Waterless+Diffuser", label: "Diffusers" },
-  { href: "/shop?category=Fragrance+Oil", label: "Fragrance Oils" },
-  { href: "/contact", label: "Contact" },
-];
+import BubbleMenu from "./BubbleMenu";
 
 export default function MenuSidebar() {
-  const { isMenuOpen, closeMenu } = useMenu();
+  const { isMenuOpen, toggleMenu } = useMenu();
 
   return (
-    <div
-      className={`${styles.overlay} ${isMenuOpen ? styles.isOpen : ""}`}
-      aria-modal="true"
-      role="dialog"
-      aria-label="Navigation menu"
-    >
-      {/* Left half — menu panel */}
-      <div className={styles.panel}>
-        <div className={styles.panelTop}>
-          <span className={styles.panelBrand}>KGiants</span>
-          <button
-            onClick={closeMenu}
-            className={styles.closeBtn}
-            aria-label="Close menu"
-          >
-            <X size={20} strokeWidth={1.5} />
-          </button>
-        </div>
-
-        <nav className={styles.navLinks}>
-          {NAV_LINKS.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className={styles.link}
-              onClick={closeMenu}
-            >
-              {label}
-              <span className={styles.linkArrow}>→</span>
-            </Link>
-          ))}
-        </nav>
-
-        <div className={styles.footer}>
-          <div className={styles.footerCol}>
-            <Link href="#" className={styles.footerLink}>
-              Instagram
-            </Link>
-            <Link href="#" className={styles.footerLink}>
-              Pinterest
-            </Link>
-          </div>
-          <div className={`${styles.footerCol} ${styles.right}`}>
-            <Link href="#" className={styles.footerLink}>
-              Terms
-            </Link>
-            <Link href="#" className={styles.footerLink}>
-              Privacy
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      {/* Right half — dimmed backdrop, click to close */}
-      <div className={styles.backdrop} onClick={closeMenu} aria-hidden="true" />
-    </div>
+    <BubbleMenu
+      useFixedPosition={true}
+      menuBg="#DDE8D0"
+      menuContentColor="#163300"
+      menuAriaLabel="Toggle navigation"
+      animationEase="back.out(1.5)"
+      animationDuration={0.45}
+      staggerDelay={0.1}
+      controlledOpen={isMenuOpen}
+      onControlledToggle={toggleMenu}
+      hideNav={true}
+    />
   );
 }

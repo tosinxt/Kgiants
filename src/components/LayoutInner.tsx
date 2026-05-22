@@ -10,7 +10,7 @@ export default function LayoutInner({
 }: {
   children: React.ReactNode;
 }) {
-  const { isMenuOpen, closeMenu } = useMenu();
+  const { isMenuOpen } = useMenu();
   const { isCartOpen } = useCart();
   const pathname = usePathname();
 
@@ -29,16 +29,9 @@ export default function LayoutInner({
   if (pathname === "/") pageClass = "layout-home";
   else if (pathname.startsWith("/products")) pageClass = "layout-pdp";
 
-  const slideClass = isMenuOpen ? "menu-open" : "";
-
   return (
-    <div className={`layout-inner ${pageClass} ${slideClass}`}>
+    <div className={`layout-inner ${pageClass}`}>
       {children}
-      <div
-        className={`sidebar-overlay ${isMenuOpen ? "active" : ""}`}
-        onClick={closeMenu}
-        aria-hidden="true"
-      />
     </div>
   );
 }
