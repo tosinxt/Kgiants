@@ -7,7 +7,6 @@ import { MenuProvider } from "@/context/MenuContext";
 import Navbar from "@/components/Navbar";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import CartSidebar from "@/components/CartSidebar";
-import MenuSidebar from "@/components/MenuSidebar";
 import LayoutInner from "@/components/LayoutInner";
 import CookieBanner from "@/components/CookieBanner";
 import CheckoutDialog from "@/components/CheckoutDialog";
@@ -36,9 +35,6 @@ export default function RootLayout({
         <AuthProvider>
           <CartProvider>
             <MenuProvider>
-              {/* Menu is fixed overlay — lives at root, not inside layout-wrapper */}
-              <MenuSidebar />
-
               {/* Cart is fixed overlay — lives at root, not inside layout-wrapper */}
               <CartSidebar />
 

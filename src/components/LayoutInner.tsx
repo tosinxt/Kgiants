@@ -2,7 +2,6 @@
 
 import React, { useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { useMenu } from "@/context/MenuContext";
 import { useCart } from "@/context/CartContext";
 
 export default function LayoutInner({
@@ -10,20 +9,13 @@ export default function LayoutInner({
 }: {
   children: React.ReactNode;
 }) {
-  const { isMenuOpen } = useMenu();
   const { isCartOpen } = useCart();
   const pathname = usePathname();
 
   useEffect(() => {
-    if (isMenuOpen || isCartOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isMenuOpen, isCartOpen]);
+    document.body.style.overflow = isCartOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [isCartOpen]);
 
   let pageClass = "layout-default";
   if (pathname === "/") pageClass = "layout-home";

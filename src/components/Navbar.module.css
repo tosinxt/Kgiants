@@ -77,10 +77,6 @@
   gap: var(--spacing-4);
 }
 
-/* Mobile hamburger — hidden on desktop */
-.mobileMenuBtn {
-  display: none;
-}
 
 /* Clean minimalist icon button */
 .iconBtn {
@@ -132,58 +128,20 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
-/* Hamburger lines */
-.menuLines {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  width: 18px;
-}
-
-.menuLine {
-  display: block;
-  height: 1.5px;
-  background: var(--color-ink);
-  border-radius: 2px;
-  transform-origin: center;
-  transition:
-    transform 220ms cubic-bezier(0.23, 1, 0.32, 1),
-    opacity 180ms ease-out,
-    width 200ms ease-out;
-  width: 100%;
-}
-
-.menuLine:last-child {
-  width: 65%;
-}
-
-.iconBtn:hover .menuLine {
-  width: 100%;
-}
-
-.menuLineOpen1 {
-  transform: translateY(3.25px) rotate(45deg);
-  width: 100% !important;
-}
-
-.menuLineOpen2 {
-  transform: translateY(-3.25px) rotate(-45deg);
-  width: 100% !important;
-}
 
 /* ── Mobile ──────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .navbar {
     padding: 0 var(--spacing-20);
-    grid-template-columns: auto 1fr auto;
   }
 
   .navCenter {
-    display: none;
+    gap: 0;
   }
 
-  .mobileMenuBtn {
-    display: inline-flex;
+  .navLink {
+    font-size: 12px;
+    padding: 6px 8px;
   }
 
   .navRight {
@@ -193,5 +151,11 @@
   .iconBtn {
     width: 36px;
     height: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navCenter {
+    display: none;
   }
 }

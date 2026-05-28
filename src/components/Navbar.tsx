@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
-import { useMenu } from "@/context/MenuContext";
 import styles from "./Navbar.module.css";
 
 const NAV_LINKS = [
@@ -14,8 +13,7 @@ const NAV_LINKS = [
 ];
 
 export default function Navbar() {
-  const { totalItems, isCartOpen, toggleCart } = useCart();
-  const { isMenuOpen, toggleMenu, closeMenu } = useMenu();
+  const { totalItems, toggleCart } = useCart();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -23,11 +21,6 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  const handleCartClick = () => {
-    if (isMenuOpen) closeMenu();
-    toggleCart();
-  };
 
   return (
     <header className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
@@ -37,7 +30,7 @@ export default function Navbar() {
         <Link href="/" className={styles.logo}>KGiants</Link>
       </div>
 
-      {/* Center — desktop nav links */}
+      {/* Center — nav links */}
       <nav className={styles.navCenter} aria-label="Main navigation">
         {NAV_LINKS.map(link => (
           <Link key={link.href} href={link.href} className={styles.navLink}>
@@ -46,10 +39,10 @@ export default function Navbar() {
         ))}
       </nav>
 
-      {/* Right — cart + mobile hamburger */}
+      {/* Right — cart */}
       <div className={styles.navRight}>
         <button
-          onClick={handleCartClick}
+          onClick={toggleCart}
           className={styles.iconBtn}
           aria-label={`Open cart, ${totalItems} item${totalItems !== 1 ? 's' : ''}`}
         >
@@ -61,19 +54,6 @@ export default function Navbar() {
           {totalItems > 0 && (
             <span className={styles.cartBadge}>{totalItems}</span>
           )}
-        </button>
-
-        {/* Mobile hamburger — hidden on desktop */}
-        <button
-          className={`${styles.iconBtn} ${styles.mobileMenuBtn}`}
-          onClick={toggleMenu}
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={isMenuOpen}
-        >
-          <div className={styles.menuLines}>
-            <span className={`${styles.menuLine} ${isMenuOpen ? styles.menuLineOpen1 : ""}`} />
-            <span className={`${styles.menuLine} ${isMenuOpen ? styles.menuLineOpen2 : ""}`} />
-          </div>
         </button>
       </div>
 
