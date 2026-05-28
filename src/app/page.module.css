@@ -1,8 +1,5 @@
 /* ── Custom easing ───────────────────────────────────────────────── */
 :root {
-  --color-sage: #B8D98A;
-  --color-sage-deep: #8BBF5A;
-  --color-sage-text: #163300;
   --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
@@ -337,7 +334,7 @@
   gap: 10px;
 }
 
-/* Neomorphic filter chips */
+/* Filter chips */
 .chipRow {
   display: flex;
   gap: var(--spacing-8);
@@ -350,43 +347,34 @@
   font-size: 13px;
   font-weight: var(--font-weight-medium);
   letter-spacing: 0.01em;
-  color: rgba(22, 51, 0, 0.55);
+  color: var(--color-stone);
   background: var(--color-white);
-  border: none;
+  border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 100px;
   padding: 7px 18px;
   cursor: pointer;
   touch-action: manipulation;
   user-select: none;
-  box-shadow:
-    2px 2px 5px rgba(175, 196, 158, 0.7),
-    -2px -2px 5px rgba(255, 255, 255, 0.9);
-  transition:
-    box-shadow 180ms cubic-bezier(0.23, 1, 0.32, 1),
-    color 160ms ease-out;
+  transition: border-color 160ms ease, color 160ms ease, background 160ms ease;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .chip:hover {
-    color: #163300;
-    box-shadow:
-      3px 3px 8px rgba(175, 196, 158, 0.75),
-      -3px -3px 8px rgba(255, 255, 255, 0.95);
+    color: var(--color-ink);
+    border-color: rgba(0, 0, 0, 0.25);
   }
 }
 
 .chipActive {
-  color: #163300;
+  color: #fff;
+  background: var(--color-ink);
+  border-color: var(--color-ink);
   font-weight: var(--font-weight-semibold);
-  box-shadow:
-    inset 2px 2px 5px rgba(175, 196, 158, 0.7),
-    inset -2px -2px 5px rgba(255, 255, 255, 0.9);
 }
 
 .chipActive:hover {
-  box-shadow:
-    inset 2px 2px 5px rgba(175, 196, 158, 0.7),
-    inset -2px -2px 5px rgba(255, 255, 255, 0.9);
+  color: #fff !important;
+  border-color: var(--color-ink) !important;
 }
 
 /* Product grid */
@@ -498,7 +486,7 @@
 
 .featuresSection {
   padding: var(--spacing-96) var(--spacing-40);
-  background: var(--color-white);
+  background: #F7F7F5;
   border-top: 1px solid rgba(0, 0, 0, 0.06);
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   margin-left: calc(-1 * var(--page-padding, var(--spacing-64)));

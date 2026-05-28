@@ -1,4 +1,4 @@
-/* ── Shop page — neomorphic KGiants theme ────────────────────────── */
+/* ── Shop page ───────────────────────────────────────────────────── */
 
 .main {
   padding-top: var(--spacing-64);
@@ -27,7 +27,7 @@
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(22, 51, 0, 0.45);
+  color: var(--color-stone-light);
 }
 
 .title {
@@ -36,13 +36,13 @@
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 0.95;
-  color: #163300;
+  color: var(--color-ink);
 }
 
 .count {
   font-size: 12px;
   font-weight: 400;
-  color: rgba(22, 51, 0, 0.4);
+  color: var(--color-stone-light);
   letter-spacing: 0.04em;
   font-variant-numeric: tabular-nums;
   padding-bottom: 4px;
@@ -72,57 +72,46 @@
   align-items: center;
 }
 
-/* ── Neomorphic chip ─────────────────────────────────────────────── */
+/* ── Filter chip ─────────────────────────────────────────────────── */
 
 .chip {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 9px 20px;
-  border-radius: 999px;
-  border: none;
-  background: #FFFFFF;
-  color: rgba(22, 51, 0, 0.6);
+  padding: 8px 18px;
+  border-radius: 100px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: var(--color-white);
+  color: var(--color-stone);
   font-family: var(--font-body);
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.01em;
   cursor: pointer;
   white-space: nowrap;
-  box-shadow:
-    3px 3px 7px rgba(175, 196, 158, 0.7),
-    -3px -3px 7px rgba(255, 255, 255, 0.95);
-  transition:
-    box-shadow 200ms cubic-bezier(0.23, 1, 0.32, 1),
-    background 200ms ease,
-    color 200ms ease;
+  transition: border-color 160ms ease, color 160ms ease, background 160ms ease;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .chip:hover {
-    color: #163300;
-    box-shadow:
-      4px 4px 10px rgba(175, 196, 158, 0.75),
-      -4px -4px 10px rgba(255, 255, 255, 0.98);
+    color: var(--color-ink);
+    border-color: rgba(0, 0, 0, 0.25);
   }
 }
 
 .chip:active {
-  box-shadow:
-    inset 2px 2px 5px rgba(175, 196, 158, 0.75),
-    inset -2px -2px 5px rgba(255, 255, 255, 0.95);
+  background: rgba(0, 0, 0, 0.03);
 }
 
 .chipActive {
-  background: #163300;
-  color: #FFFFFF;
-  box-shadow:
-    inset 2px 2px 6px rgba(5, 15, 0, 0.5),
-    inset -1px -1px 3px rgba(0, 0, 0, 0.15);
+  background: var(--color-ink);
+  color: #fff;
+  border-color: var(--color-ink);
 }
 
 .chipActive:hover {
-  color: #FFFFFF !important;
+  color: #fff !important;
+  border-color: var(--color-ink) !important;
 }
 
 /* ── Sort dropdown ───────────────────────────────────────────────── */
@@ -138,14 +127,13 @@
 
 .sortDropdown {
   position: absolute;
-  top: calc(100% + 8px);
+  top: calc(100% + 6px);
   right: 0;
   min-width: 180px;
-  background: #FFFFFF;
-  border-radius: 16px;
-  box-shadow:
-    8px 8px 20px rgba(175, 196, 158, 0.75),
-    -8px -8px 20px rgba(255, 255, 255, 0.95);
+  background: var(--color-white);
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   z-index: 100;
   display: flex;
@@ -153,29 +141,29 @@
 }
 
 .sortOption {
-  padding: 13px 20px;
+  padding: 11px 18px;
   text-align: left;
   background: transparent;
   border: none;
   font-family: var(--font-body);
   font-size: 13px;
-  font-weight: 500;
-  color: rgba(22, 51, 0, 0.6);
+  font-weight: 400;
+  color: var(--color-stone);
   cursor: pointer;
-  transition: background 150ms ease, color 150ms ease;
+  transition: background 140ms ease, color 140ms ease;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .sortOption:hover {
-    background: rgba(159, 232, 112, 0.2);
-    color: #163300;
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--color-ink);
   }
 }
 
 .sortOptionActive {
-  color: #163300;
+  color: var(--color-ink);
   font-weight: 600;
-  background: rgba(159, 232, 112, 0.15);
+  background: rgba(0, 0, 0, 0.04);
 }
 
 /* ── Product grid ────────────────────────────────────────────────── */
@@ -195,7 +183,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--spacing-20);
-  color: rgba(22, 51, 0, 0.45);
+  color: var(--color-stone);
   font-size: var(--text-body);
   font-family: var(--font-body);
 }

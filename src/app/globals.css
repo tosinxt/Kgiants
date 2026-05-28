@@ -78,7 +78,7 @@
   /* ── Radii — Wise desktop scale ─────────────────────────────── */
   --radius-cards:   20px;
   --radius-badges:  100px;
-  --radius-inputs:  16px;
+  --radius-inputs:  6px;
   --radius-buttons: 100px;
   --radius-lg:      30px;
   --radius-default: 20px;
@@ -104,7 +104,7 @@
 }
 
 *:focus-visible {
-  outline: 1px solid var(--color-emerald);
+  outline: 2px solid var(--color-emerald);
   outline-offset: 2px;
 }
 
@@ -146,11 +146,6 @@ h1, h2, h3, h4, h5, h6 {
 a {
   text-decoration: none;
   color: inherit;
-  transition: opacity 150ms ease-out;
-}
-
-a:hover {
-  opacity: 0.7;
 }
 
 /* ── Product detail accordion ────────────────────────────────────── */
