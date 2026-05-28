@@ -4,12 +4,11 @@
 .card {
   position: relative;
   background: var(--color-white);
-  border: 1px solid var(--color-border);
-  border-radius: 0px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.03);
-  padding: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 4px;
+  padding: 12px;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -17,8 +16,9 @@
 
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-    transform: translateY(-4px);
+    border-color: rgba(0, 0, 0, 0.14);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+    transform: translateY(-2px);
   }
 }
 
@@ -36,9 +36,9 @@
   width: 100%;
   aspect-ratio: 3 / 4;
   overflow: hidden;
-  background: #F9F9F9;
-  border-radius: 0px;
-  margin-bottom: 16px;
+  background: #F5F5F5;
+  border-radius: 2px;
+  margin-bottom: 14px;
 }
 
 /* Base (first) image */
@@ -211,10 +211,10 @@
 
 .name {
   font-family: var(--font-display);
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 500;
   color: var(--color-ink);
-  line-height: 1.2;
+  line-height: 1.25;
   letter-spacing: -0.01em;
 }
 

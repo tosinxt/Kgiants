@@ -6,6 +6,13 @@ import { useCart } from "@/context/CartContext";
 import { useMenu } from "@/context/MenuContext";
 import styles from "./Navbar.module.css";
 
+const NAV_LINKS = [
+  { label: "Shop", href: "/shop" },
+  { label: "Diffusers", href: "/shop?category=Waterless+Diffuser" },
+  { label: "Fragrance Oils", href: "/shop?category=Fragrance+Oil" },
+  { label: "About", href: "/#story" },
+];
+
 export default function Navbar() {
   const { totalItems, isCartOpen, toggleCart } = useCart();
   const { isMenuOpen, toggleMenu, closeMenu } = useMenu();
@@ -25,27 +32,21 @@ export default function Navbar() {
   return (
     <header className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
 
-      {/* Left — menu toggle */}
+      {/* Left — wordmark */}
       <div className={styles.navLeft}>
-        <button
-          className={styles.iconBtn}
-          onClick={toggleMenu}
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={isMenuOpen}
-        >
-          <div className={styles.menuLines}>
-            <span className={`${styles.menuLine} ${isMenuOpen ? styles.menuLineOpen1 : ""}`} />
-            <span className={`${styles.menuLine} ${isMenuOpen ? styles.menuLineOpen2 : ""}`} />
-          </div>
-        </button>
-      </div>
-
-      {/* Center — wordmark */}
-      <div className={styles.navCenter}>
         <Link href="/" className={styles.logo}>KGiants</Link>
       </div>
 
-      {/* Right — cart */}
+      {/* Center — desktop nav links */}
+      <nav className={styles.navCenter} aria-label="Main navigation">
+        {NAV_LINKS.map(link => (
+          <Link key={link.href} href={link.href} className={styles.navLink}>
+            {link.label}
+          </Link>
+        ))}
+      </nav>
+
+      {/* Right — cart + mobile hamburger */}
       <div className={styles.navRight}>
         <button
           onClick={handleCartClick}
@@ -60,6 +61,19 @@ export default function Navbar() {
           {totalItems > 0 && (
             <span className={styles.cartBadge}>{totalItems}</span>
           )}
+        </button>
+
+        {/* Mobile hamburger — hidden on desktop */}
+        <button
+          className={`${styles.iconBtn} ${styles.mobileMenuBtn}`}
+          onClick={toggleMenu}
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isMenuOpen}
+        >
+          <div className={styles.menuLines}>
+            <span className={`${styles.menuLine} ${isMenuOpen ? styles.menuLineOpen1 : ""}`} />
+            <span className={`${styles.menuLine} ${isMenuOpen ? styles.menuLineOpen2 : ""}`} />
+          </div>
         </button>
       </div>
 

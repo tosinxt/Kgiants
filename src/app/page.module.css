@@ -195,8 +195,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid var(--color-border);
-  background: var(--color-cream);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  background: var(--color-white);
 }
 
 .statItem {
@@ -206,7 +206,7 @@
   gap: 4px;
   padding: var(--spacing-28) var(--spacing-48);
   flex: 1;
-  border-right: 1px solid var(--color-border);
+  border-right: 1px solid rgba(0, 0, 0, 0.07);
   text-align: center;
 }
 
@@ -234,8 +234,8 @@
 
 .velocityStrip {
   overflow: hidden;
-  padding: 20px 0;
-  background: #163300;
+  padding: 14px 0;
+  background: var(--color-emerald);
   margin-left: calc(-1 * var(--page-padding, var(--spacing-64)));
   margin-right: calc(-1 * var(--page-padding, var(--spacing-64)));
   width: calc(100% + var(--page-padding, var(--spacing-64)) * 2);
@@ -244,11 +244,11 @@
 
 .velocityText {
   font-family: var(--font-display);
-  font-size: 13px;
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: 0.18em;
+  font-size: 11px;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(159, 232, 112, 0.7);
+  color: rgba(255, 255, 255, 0.6);
   padding: 0 32px;
 }
 
@@ -292,7 +292,7 @@
   justify-content: space-between;
   margin-bottom: var(--spacing-20);
   padding-bottom: var(--spacing-20);
-  border-bottom: 1px solid rgba(22, 51, 0, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .sectionHeadLeft {
@@ -498,7 +498,9 @@
 
 .featuresSection {
   padding: var(--spacing-96) var(--spacing-40);
-  background: var(--color-sage);
+  background: var(--color-white);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   margin-left: calc(-1 * var(--page-padding, var(--spacing-64)));
   margin-right: calc(-1 * var(--page-padding, var(--spacing-64)));
   width: calc(100% + var(--page-padding, var(--spacing-64)) * 2);
@@ -515,7 +517,7 @@
   font-weight: var(--font-weight-medium);
   text-transform: uppercase;
   letter-spacing: 0.22em;
-  color: rgba(22, 51, 0, 0.6);
+  color: var(--color-stone-light);
   margin-bottom: var(--spacing-12);
 }
 
@@ -524,7 +526,7 @@
   font-size: clamp(28px, 3vw, 40px);
   font-weight: var(--font-weight-bold);
   letter-spacing: -0.025em;
-  color: var(--color-sage-text);
+  color: var(--color-ink);
 }
 
 .featuresGrid {
@@ -537,21 +539,21 @@
 
 .featureCard {
   padding: var(--spacing-40) var(--spacing-32);
-  background: rgba(255, 255, 255, 0.65);
-  border: 1px solid rgba(22, 51, 0, 0.1);
-  border-radius: var(--radius-cards);
+  background: var(--color-white);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
   transition: transform 240ms var(--ease-out-strong), box-shadow 240ms ease-out;
 }
 
 .featureCard:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(22, 51, 0, 0.1);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
 }
 
 .featureIcon {
   display: flex;
   margin-bottom: var(--spacing-20);
-  color: var(--color-sage-text);
+  color: var(--color-emerald);
 }
 
 .featureTitle {
@@ -559,7 +561,7 @@
   font-size: 16px;
   font-weight: var(--font-weight-semibold);
   letter-spacing: -0.01em;
-  color: var(--color-sage-text);
+  color: var(--color-ink);
   margin-bottom: var(--spacing-12);
 }
 
@@ -568,7 +570,7 @@
   font-size: 13px;
   font-weight: var(--font-weight-light);
   line-height: 1.75;
-  color: rgba(22, 51, 0, 0.65);
+  color: var(--color-stone);
 }
 
 /* ── CTA ─────────────────────────────────────────────────────────── */
@@ -593,7 +595,7 @@
   font-weight: var(--font-weight-medium);
   text-transform: uppercase;
   letter-spacing: 0.22em;
-  color: rgba(159, 232, 112, 0.7);
+  color: rgba(255, 255, 255, 0.45);
   margin-bottom: var(--spacing-20);
 }
 
@@ -756,6 +758,8 @@
   /* Features */
   .featuresSection {
     padding: var(--spacing-64) var(--spacing-20);
+    border-left: none;
+    border-right: none;
     margin-left: calc(-1 * var(--spacing-20));
     margin-right: calc(-1 * var(--spacing-20));
     width: calc(100% + var(--spacing-20) * 2);

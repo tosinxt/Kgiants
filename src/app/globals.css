@@ -11,7 +11,7 @@
   --color-emerald-accent: #FFFFFF;          /* Wise Bright Green — highlights, badges */
   --color-emerald-deep:   #0A1F00;          /* deeper Forest Green */
   --color-emerald-light:  #F4F4F4;          /* Neutral gray instead of mint */
-  --color-border:         rgba(22, 51, 0, 0.12);
+  --color-border:         rgba(0, 0, 0, 0.08);
 
   /* Legacy aliases (used in existing components — maps to new system) */
   --color-oatmeal-canvas: var(--color-cream);

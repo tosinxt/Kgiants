@@ -4,33 +4,23 @@
   top: var(--announcement-bar-height, 40px);
   left: 0;
   right: 0;
-  margin: 0 auto;
-  max-width: 100%;
-  border-radius: 0;
   z-index: 1000;
   height: var(--navbar-height);
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   padding: 0 var(--page-padding, var(--spacing-64));
   background: var(--color-white);
-  border: 1px solid transparent;
-  box-shadow: 0 1px 0 rgba(0,0,0,0.05);
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .navbar.scrolled {
-  top: 16px;
-  max-width: 800px;
-  left: 16px;
-  right: 16px;
-  border-radius: 100px;
-  padding: 0 24px;
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom-color: rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
 }
 
 /* ── Left — wordmark ─────────────────────────────────────────────── */
@@ -41,9 +31,9 @@
 
 .logo {
   font-family: var(--font-display);
-  font-size: 18px;
+  font-size: 17px;
   font-weight: var(--font-weight-bold);
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   color: var(--color-ink);
   text-decoration: none;
   transition: opacity 150ms ease-out;
@@ -53,11 +43,29 @@
   opacity: 0.65;
 }
 
-/* ── Center — wordmark ───────────────────────────────────────────── */
+/* ── Center — desktop nav links ──────────────────────────────────── */
 .navCenter {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: var(--spacing-8);
+}
+
+.navLink {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.01em;
+  color: var(--color-stone);
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: color 150ms ease-out, background 150ms ease-out;
+}
+
+.navLink:hover {
+  color: var(--color-ink);
+  background: rgba(0, 0, 0, 0.04);
 }
 
 /* ── Right — actions ─────────────────────────────────────────────── */
@@ -65,7 +73,12 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: var(--spacing-12);
+  gap: var(--spacing-4);
+}
+
+/* Mobile hamburger — hidden on desktop */
+.mobileMenuBtn {
+  display: none;
 }
 
 /* Clean minimalist icon button */
@@ -161,20 +174,19 @@
 @media (max-width: 768px) {
   .navbar {
     padding: 0 var(--spacing-20);
-    grid-template-columns: 1fr auto 1fr;
-  }
-  
-  .navbar.scrolled {
-    max-width: calc(100% - 32px);
-    padding: 0 20px;
+    grid-template-columns: auto 1fr auto;
   }
 
   .navCenter {
-    display: flex;
+    display: none;
+  }
+
+  .mobileMenuBtn {
+    display: inline-flex;
   }
 
   .navRight {
-    gap: var(--spacing-8);
+    gap: var(--spacing-4);
   }
 
   .iconBtn {
