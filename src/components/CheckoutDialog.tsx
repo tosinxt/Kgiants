@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowRight, ArrowLeft, Lock, Truck } from "lucide-react";
 import { loadStripe } from "@stripe/stripe-js";
 import {
@@ -21,355 +21,308 @@ const stripePromise = loadStripe(
 );
 const VAT_RATE = 0.075;
 
-function StepBar({ step }: { step: 1 | 2 | 3 }) {
-  const steps = ["Cart", "Shipping", "Payment"];
-  return (
-    <div className={styles.stepBar}>
-      {steps.map((label, i) => (
-        <React.Fragment key={label}>
-          <span
-            className={`${styles.stepLabel} ${step >= i + 1 ? styles.active : ""}`}
-          >
-            {label}
-          </span>
-          {i < steps.length - 1 && <div className={styles.stepDivider} />}
-        </React.Fragment>
-      ))}
-    </div>
-  );
-}
+/* ── Order summary (always visible on left) ─────────────────────── */
 
-function Step1({
-  onNext,
-  email,
-  setEmail,
+function OrderSummary({
+  subtotal,
+  selectedRate,
 }: {
-  onNext: () => void;
-  email: string;
-  setEmail: (v: string) => void;
+  subtotal: number;
+  selectedRate: ShippingRate | null;
 }) {
-  const { items, totalPrice, removeItem } = useCart();
-  const vat = totalPrice * VAT_RATE;
+  const { items } = useCart();
+  const vat = Math.round(subtotal * VAT_RATE * 100) / 100;
+  const shipping = selectedRate?.price ?? null;
+  const total = shipping !== null ? subtotal + vat + shipping : null;
 
   return (
-    <div className={styles.contentGrid}>
-      <div className={styles.cartSection}>
-        <h2 className={styles.sectionTitle}>Cart</h2>
-        <div className={styles.cartList}>
-          {items.length === 0 ? (
-            <p
-              style={{
-                color: "var(--color-stone)",
-                fontSize: 14,
-                fontFamily: "var(--font-body)",
-                fontWeight: 300,
-              }}
-            >
-              Your cart is empty.
-            </p>
-          ) : (
-            items.map((item) => (
-              <div key={item.id} className={styles.cartItem}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={item.image_url}
-                  alt={item.name}
-                  className={styles.itemImage}
-                />
-                <div className={styles.itemInfo}>
-                  <div className={styles.itemHeader}>
-                    <span className={styles.itemName}>{item.name}</span>
-                    <button
-                      className={styles.itemRemove}
-                      onClick={() => removeItem(item.id)}
-                    >
-                      <X size={14} />
-                    </button>
-                  </div>
-                  <div className={styles.itemMeta}>Qty: {item.quantity}</div>
-                  <div className={styles.itemPrice}>
-                    ${(item.price * item.quantity).toFixed(2)}
-                  </div>
-                </div>
-              </div>
-            ))
-          )}
-        </div>
-
-        <div className={styles.divider} />
-        <div className={styles.totalRow}>
+    <div className={styles.summary}>
+      <h2 className={styles.summaryTitle}>Order Summary</h2>
+      <ul className={styles.summaryItems}>
+        {items.map((item) => (
+          <li key={item.id} className={styles.summaryItem}>
+            <div className={styles.summaryImgWrap}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={item.image_url} alt={item.name} className={styles.summaryImg} />
+              <span className={styles.summaryQtyBadge}>{item.quantity}</span>
+            </div>
+            <div className={styles.summaryItemInfo}>
+              <span className={styles.summaryItemName}>{item.name}</span>
+              <span className={styles.summaryItemPrice}>
+                ${(item.price * item.quantity).toFixed(2)}
+              </span>
+            </div>
+          </li>
+        ))}
+      </ul>
+      <div className={styles.summaryLedger}>
+        <div className={styles.ledgerRow}>
           <span>Subtotal</span>
-          <span>${totalPrice.toFixed(2)}</span>
+          <span>${subtotal.toFixed(2)}</span>
         </div>
-        <div className={styles.totalRow}>
-          <span>VAT (7.5%)</span>
+        <div className={styles.ledgerRow}>
+          <span>Tax (7.5%)</span>
           <span>${vat.toFixed(2)}</span>
         </div>
-        <div className={styles.totalRow}>
+        <div className={styles.ledgerRow}>
           <span>Shipping</span>
-          <span>Calculated next</span>
+          <span className={shipping === 0 ? styles.free : undefined}>
+            {shipping === null
+              ? "—"
+              : shipping === 0
+              ? "Free"
+              : `$${shipping.toFixed(2)}`}
+          </span>
         </div>
-        <div className={`${styles.totalRow} ${styles.finalRow}`}>
-          <span>Estimated Total</span>
-          <span>${(totalPrice + vat).toFixed(2)}</span>
-        </div>
-      </div>
-
-      <div className={styles.verticalDivider} />
-
-      <div className={styles.checkoutSection}>
-        <h2 className={styles.sectionTitle}>Checkout</h2>
-        <p className={styles.sectionSubtitle}>
-          Enter your email to receive your order confirmation.
-        </p>
-        <input
-          type="email"
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="your@email.com"
-          className={styles.emailInput}
-        />
-        <button
-          className={styles.primaryCheckoutBtn}
-          disabled={!email || items.length === 0}
-          onClick={onNext}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 8,
-          }}
-        >
-          Continue to Shipping <ArrowRight size={15} />
-        </button>
-        <div
-          style={{
-            marginTop: 16,
-            fontSize: 12,
-            color: "var(--color-stone-light)",
-            display: "flex",
-            alignItems: "center",
-            gap: 6,
-            fontFamily: "var(--font-body)",
-            fontWeight: 300,
-          }}
-        >
-          <Lock size={12} /> All data transmitted via encrypted TLS
+        <div className={styles.ledgerTotal}>
+          <span>Total</span>
+          <span>{total !== null ? `$${total.toFixed(2)}` : "—"}</span>
         </div>
       </div>
     </div>
   );
 }
 
-function Step2({
+/* ── Step 1: Contact + Address ──────────────────────────────────── */
+
+interface AddressState {
+  name: string;
+  line1: string;
+  line2: string;
+  city: string;
+  state: string;
+  zip: string;
+}
+
+const emptyAddress: AddressState = {
+  name: "", line1: "", line2: "", city: "", state: "", zip: "",
+};
+
+function DetailsStep({
+  onNext,
+  loading,
+  email,
+  setEmail,
+  address,
+  setAddress,
+}: {
+  onNext: () => void;
+  loading: boolean;
+  email: string;
+  setEmail: (v: string) => void;
+  address: AddressState;
+  setAddress: (a: AddressState) => void;
+}) {
+  const { items } = useCart();
+
+  const update =
+    (field: keyof AddressState) =>
+    (e: React.ChangeEvent<HTMLInputElement>) =>
+      setAddress({ ...address, [field]: e.target.value });
+
+  const valid =
+    !!email &&
+    !!address.name &&
+    !!address.line1 &&
+    !!address.city &&
+    !!address.state &&
+    address.zip.length === 5 &&
+    items.length > 0;
+
+  return (
+    <div className={styles.formPanel}>
+      <h2 className={styles.formTitle}>Contact & Shipping</h2>
+
+      <fieldset className={styles.fieldset}>
+        <legend className={styles.legend}>Contact</legend>
+        <label className={styles.label}>
+          Email
+          <input
+            type="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="your@email.com"
+            className={styles.input}
+          />
+        </label>
+      </fieldset>
+
+      <fieldset className={styles.fieldset}>
+        <legend className={styles.legend}>Shipping address</legend>
+        <label className={styles.label}>
+          Full name
+          <input
+            type="text"
+            required
+            value={address.name}
+            onChange={update("name")}
+            placeholder="Jane Smith"
+            className={styles.input}
+          />
+        </label>
+        <label className={styles.label}>
+          Address line 1
+          <input
+            type="text"
+            required
+            value={address.line1}
+            onChange={update("line1")}
+            placeholder="123 Main St"
+            className={styles.input}
+          />
+        </label>
+        <label className={styles.label}>
+          Address line 2
+          <input
+            type="text"
+            value={address.line2}
+            onChange={update("line2")}
+            placeholder="Apt, suite, etc. (optional)"
+            className={styles.input}
+          />
+        </label>
+        <div className={styles.row3}>
+          <label className={`${styles.label} ${styles.grow}`}>
+            City
+            <input
+              type="text"
+              required
+              value={address.city}
+              onChange={update("city")}
+              placeholder="New York"
+              className={styles.input}
+            />
+          </label>
+          <label className={styles.label} style={{ width: 72 }}>
+            State
+            <input
+              type="text"
+              required
+              value={address.state}
+              onChange={(e) =>
+                setAddress({ ...address, state: e.target.value.slice(0, 2).toUpperCase() })
+              }
+              placeholder="NY"
+              maxLength={2}
+              className={styles.input}
+            />
+          </label>
+          <label className={styles.label} style={{ width: 96 }}>
+            ZIP
+            <input
+              type="text"
+              required
+              value={address.zip}
+              onChange={(e) =>
+                setAddress({
+                  ...address,
+                  zip: e.target.value.replace(/\D/g, "").slice(0, 5),
+                })
+              }
+              placeholder="10001"
+              maxLength={5}
+              className={styles.input}
+            />
+          </label>
+        </div>
+      </fieldset>
+
+      <button
+        className={styles.primaryBtn}
+        disabled={!valid || loading}
+        onClick={onNext}
+      >
+        {loading ? (
+          "Fetching rates…"
+        ) : (
+          <>
+            Get shipping rates <ArrowRight size={15} />
+          </>
+        )}
+      </button>
+      <p className={styles.secureNote}>
+        <Lock size={11} /> All data transmitted via encrypted TLS
+      </p>
+    </div>
+  );
+}
+
+/* ── Step 2: Shipping rate picker ───────────────────────────────── */
+
+function ShippingStep({
   onNext,
   onBack,
-  zip,
-  setZip,
+  rates,
   selectedRate,
   setSelectedRate,
-  rates,
-  setRates,
-  subtotal,
+  loading,
 }: {
   onNext: () => void;
   onBack: () => void;
-  zip: string;
-  setZip: (v: string) => void;
+  rates: ShippingRate[];
   selectedRate: ShippingRate | null;
   setSelectedRate: (r: ShippingRate) => void;
-  rates: ShippingRate[];
-  setRates: (r: ShippingRate[]) => void;
-  subtotal: number;
+  loading: boolean;
 }) {
-  const [loading, setLoading] = useState(false);
-  const { items } = useCart();
-  const vat = subtotal * VAT_RATE;
-
-  const fetchRates = async () => {
-    if (zip.length < 5) return;
-    setLoading(true);
-    try {
-      const res = await fetch("/api/shipping/rates", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          zip,
-          items: items.map((i) => ({
-            weight_oz: (i as any).weight_oz || 4,
-            quantity: i.quantity,
-          })),
-          subtotal,
-        }),
-      });
-      const data = await res.json();
-      setRates(data.rates || []);
-      if (data.rates?.length > 0) setSelectedRate(data.rates[0]);
-    } catch {
-      toast.error("Could not fetch shipping rates");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
-    <div className={styles.contentGrid}>
-      <div className={styles.cartSection}>
-        <button onClick={onBack} style={backBtnStyle}>
-          <ArrowLeft size={14} /> Back
-        </button>
-        <h2 className={styles.sectionTitle}>Shipping</h2>
+    <div className={styles.formPanel}>
+      <button className={styles.backBtn} onClick={onBack}>
+        <ArrowLeft size={14} /> Back
+      </button>
+      <h2 className={styles.formTitle}>Shipping method</h2>
 
-        <div style={{ display: "flex", gap: 8, marginBottom: 24 }}>
-          <input
-            type="text"
-            value={zip}
-            onChange={(e) =>
-              setZip(e.target.value.replace(/\D/g, "").slice(0, 5))
-            }
-            placeholder="US ZIP code"
-            className={styles.emailInput}
-            style={{ marginBottom: 0, flex: 1 }}
-            maxLength={5}
-          />
-          <button
-            onClick={fetchRates}
-            disabled={zip.length < 5 || loading}
-            className={styles.primaryCheckoutBtn}
-            style={{
-              flex: "none",
-              width: "auto",
-              padding: "0 20px",
-              display: "flex",
-              alignItems: "center",
-              gap: 6,
-            }}
-          >
-            {loading ? (
-              "Loading..."
-            ) : (
-              <>
-                <Truck size={13} /> Get Rates
-              </>
-            )}
-          </button>
+      {loading ? (
+        <p className={styles.initNote}>Fetching rates…</p>
+      ) : (
+        <div className={styles.rateList}>
+          {rates.map((rate) => (
+            <label
+              key={rate.id}
+              className={`${styles.rateOption} ${
+                selectedRate?.id === rate.id ? styles.rateOptionSelected : ""
+              }`}
+            >
+              <input
+                type="radio"
+                name="shippingRate"
+                checked={selectedRate?.id === rate.id}
+                onChange={() => setSelectedRate(rate)}
+                className={styles.rateRadio}
+              />
+              <div className={styles.rateInfo}>
+                <span className={styles.rateProvider}>
+                  <Truck size={13} /> {rate.provider}
+                </span>
+                <span className={styles.rateService}>{rate.service}</span>
+                <span className={styles.rateEta}>{rate.estimated_days}</span>
+              </div>
+              <span className={styles.ratePrice}>
+                {rate.price === 0 ? (
+                  <span className={styles.free}>Free</span>
+                ) : (
+                  `$${rate.price.toFixed(2)}`
+                )}
+              </span>
+            </label>
+          ))}
         </div>
+      )}
 
-        {rates.length > 0 && (
-          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-            {rates.map((rate) => (
-              <label
-                key={rate.id}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 12,
-                  padding: "14px 16px",
-                  border: `1px solid ${selectedRate?.id === rate.id ? "var(--color-ink)" : "var(--color-border)"}`,
-                  cursor: "pointer",
-                  background:
-                    selectedRate?.id === rate.id
-                      ? "var(--color-cream)"
-                      : "transparent",
-                  transition: "all 180ms ease-out",
-                  fontSize: 14,
-                  fontFamily: "var(--font-body)",
-                  fontWeight: 300,
-                }}
-              >
-                <input
-                  type="radio"
-                  name="shipping"
-                  checked={selectedRate?.id === rate.id}
-                  onChange={() => setSelectedRate(rate)}
-                  style={{ accentColor: "var(--color-ink)" }}
-                />
-                <div style={{ flex: 1 }}>
-                  <div style={{ color: "var(--color-ink)", fontWeight: 400 }}>
-                    {rate.provider} — {rate.service}
-                  </div>
-                  <div
-                    style={{
-                      color: "var(--color-stone)",
-                      marginTop: 2,
-                      fontSize: 12,
-                    }}
-                  >
-                    {rate.estimated_days}
-                  </div>
-                </div>
-                <div style={{ color: "var(--color-ink)", fontWeight: 400 }}>
-                  {rate.price === 0 ? "Free" : `$${rate.price.toFixed(2)}`}
-                </div>
-              </label>
-            ))}
-          </div>
-        )}
-      </div>
-
-      <div className={styles.verticalDivider} />
-
-      <div className={styles.checkoutSection}>
-        <h2 className={styles.sectionTitle}>Summary</h2>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 12,
-            fontFamily: "var(--font-body)",
-            fontSize: 14,
-            fontWeight: 300,
-          }}
-        >
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <span style={{ color: "var(--color-stone)" }}>Subtotal</span>
-            <span>${subtotal.toFixed(2)}</span>
-          </div>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <span style={{ color: "var(--color-stone)" }}>VAT (7.5%)</span>
-            <span>${vat.toFixed(2)}</span>
-          </div>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <span style={{ color: "var(--color-stone)" }}>Shipping</span>
-            <span>
-              {selectedRate
-                ? selectedRate.price === 0
-                  ? "Free"
-                  : `$${selectedRate.price.toFixed(2)}`
-                : "—"}
-            </span>
-          </div>
-          <div className={`${styles.totalRow} ${styles.finalRow}`}>
-            <span>Total</span>
-            <span>
-              $
-              {selectedRate
-                ? (subtotal + vat + selectedRate.price).toFixed(2)
-                : (subtotal + vat).toFixed(2)}
-            </span>
-          </div>
-        </div>
-        <button
-          className={styles.primaryCheckoutBtn}
-          disabled={!selectedRate}
-          onClick={onNext}
-          style={{
-            marginTop: 32,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 8,
-          }}
-        >
-          Continue to Payment <ArrowRight size={15} />
-        </button>
-      </div>
+      <button
+        className={styles.primaryBtn}
+        disabled={!selectedRate || loading}
+        onClick={onNext}
+      >
+        Continue to payment <ArrowRight size={15} />
+      </button>
     </div>
   );
 }
 
-function PaymentForm({
+/* ── Step 3: Payment ────────────────────────────────────────────── */
+
+function PaymentStep({
   onBack,
   email,
   subtotal,
@@ -387,7 +340,7 @@ function PaymentForm({
   const [processing, setProcessing] = useState(false);
   const router = useRouter();
   const { clearCart, toggleCheckout } = useCart();
-  const vat = subtotal * VAT_RATE;
+  const vat = Math.round(subtotal * VAT_RATE * 100) / 100;
   const total = subtotal + vat + shippingFee;
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -413,113 +366,45 @@ function PaymentForm({
   };
 
   return (
-    <div className={styles.contentGrid}>
-      <div className={styles.cartSection}>
-        <button onClick={onBack} style={backBtnStyle}>
-          <ArrowLeft size={14} /> Back
+    <div className={styles.formPanel}>
+      <button className={styles.backBtn} onClick={onBack}>
+        <ArrowLeft size={14} /> Back
+      </button>
+      <h2 className={styles.formTitle}>Payment</h2>
+      <form onSubmit={handleSubmit}>
+        <PaymentElement
+          options={{
+            layout: "tabs",
+            fields: { billingDetails: { email: "never" } },
+          }}
+        />
+        <button
+          type="submit"
+          disabled={processing || !stripe}
+          className={styles.primaryBtn}
+          style={{ marginTop: 24 }}
+        >
+          <Lock size={13} />
+          {processing ? "Processing…" : `Pay $${total.toFixed(2)}`}
         </button>
-        <h2 className={styles.sectionTitle}>Payment</h2>
-        <form onSubmit={handleSubmit}>
-          <PaymentElement
-            options={{
-              layout: "tabs",
-              fields: { billingDetails: { email: "never" } },
-            }}
-          />
-          <button
-            type="submit"
-            disabled={processing || !stripe}
-            className={styles.primaryCheckoutBtn}
-            style={{
-              marginTop: 24,
-              width: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: 8,
-            }}
-          >
-            <Lock size={13} />
-            {processing ? "Processing..." : `Pay $${total.toFixed(2)}`}
-          </button>
-          <div
-            style={{
-              marginTop: 12,
-              fontSize: 12,
-              color: "var(--color-stone-light)",
-              display: "flex",
-              alignItems: "center",
-              gap: 6,
-              fontFamily: "var(--font-body)",
-              fontWeight: 300,
-            }}
-          >
-            <Lock size={12} /> Secured by Stripe · PCI-DSS compliant
-          </div>
-        </form>
-      </div>
-
-      <div className={styles.verticalDivider} />
-
-      <div className={styles.checkoutSection}>
-        <h2 className={styles.sectionTitle}>Total</h2>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 12,
-            fontFamily: "var(--font-body)",
-            fontSize: 14,
-            fontWeight: 300,
-          }}
-        >
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <span style={{ color: "var(--color-stone)" }}>Subtotal</span>
-            <span>${subtotal.toFixed(2)}</span>
-          </div>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <span style={{ color: "var(--color-stone)" }}>VAT (7.5%)</span>
-            <span>${vat.toFixed(2)}</span>
-          </div>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <span style={{ color: "var(--color-stone)" }}>Shipping</span>
-            <span>
-              {shippingFee === 0 ? "Free" : `$${shippingFee.toFixed(2)}`}
-            </span>
-          </div>
-          <div className={`${styles.totalRow} ${styles.finalRow}`}>
-            <span>Total</span>
-            <span>${total.toFixed(2)}</span>
-          </div>
-        </div>
-        <div
-          style={{
-            marginTop: 32,
-            padding: "14px 16px",
-            background: "var(--color-cream)",
-            border: "1px solid var(--color-border)",
-            fontSize: 12,
-            color: "var(--color-stone)",
-            lineHeight: 1.6,
-            fontFamily: "var(--font-body)",
-            fontWeight: 300,
-          }}
-        >
-          Apple Pay and Google Pay are available where supported by your browser
-          and device.
-        </div>
-      </div>
+      </form>
+      <p className={styles.secureNote}>
+        <Lock size={11} /> Secured by Stripe · PCI-DSS compliant
+      </p>
     </div>
   );
 }
+
+/* ── Root dialog ────────────────────────────────────────────────── */
 
 export default function CheckoutDialog() {
   const { isCheckoutOpen, toggleCheckout, items, totalPrice } = useCart();
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [email, setEmail] = useState("");
-  const [zip, setZip] = useState("");
+  const [address, setAddress] = useState<AddressState>(emptyAddress);
   const [rates, setRates] = useState<ShippingRate[]>([]);
   const [selectedRate, setSelectedRate] = useState<ShippingRate | null>(null);
+  const [fetchingRates, setFetchingRates] = useState(false);
   const [clientSecret, setClientSecret] = useState("");
   const [paymentIntentId, setPaymentIntentId] = useState("");
   const [creatingIntent, setCreatingIntent] = useState(false);
@@ -534,6 +419,35 @@ export default function CheckoutDialog() {
     }
   }, [isCheckoutOpen]);
 
+  const fetchRates = useCallback(async () => {
+    if (fetchingRates) return;
+    setFetchingRates(true);
+    try {
+      const res = await fetch("/api/shipping/rates", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          zip: address.zip,
+          items: items.map((i) => ({
+            weight_oz: (i as any).weight_oz || 4,
+            quantity: i.quantity,
+          })),
+          subtotal: totalPrice,
+        }),
+      });
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+      const fetchedRates: ShippingRate[] = data.rates || [];
+      setRates(fetchedRates);
+      if (fetchedRates.length > 0) setSelectedRate(fetchedRates[0]);
+      setStep(2);
+    } catch (err: any) {
+      toast.error("Could not fetch shipping rates. Please try again.");
+    } finally {
+      setFetchingRates(false);
+    }
+  }, [fetchingRates, address.zip, items, totalPrice]);
+
   const createPaymentIntent = useCallback(async () => {
     if (!selectedRate || creatingIntent) return;
     setCreatingIntent(true);
@@ -543,152 +457,182 @@ export default function CheckoutDialog() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           items,
-          shippingFee: selectedRate.price,
           customerEmail: email,
-          shippingAddress: { zip },
+          shippingAddress: { name: address.name, zip: address.zip },
+          shippingFee: selectedRate.price,
         }),
       });
       const data = await res.json();
       if (data.error) throw new Error(data.error);
       setClientSecret(data.clientSecret);
       setPaymentIntentId(data.paymentIntentId);
+      setStep(3);
     } catch (err: any) {
       toast.error("Could not initialize payment: " + err.message);
     } finally {
       setCreatingIntent(false);
     }
-  }, [selectedRate, items, email, zip, creatingIntent]);
+  }, [selectedRate, creatingIntent, items, email, address]);
 
   if (!isCheckoutOpen) return null;
 
-  const goToStep3 = async () => {
-    await createPaymentIntent();
-    setStep(3);
-  };
+  const stepLabels = ["Details", "Shipping", "Payment"];
 
   return (
     <div className={styles.overlay} onClick={toggleCheckout}>
       <motion.div
         className={styles.dialog}
         onClick={(e) => e.stopPropagation()}
-        initial={{ opacity: 0, scale: 0.97, y: 12 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.97, y: 12 }}
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 16 }}
         transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
       >
-        <button className={styles.closeBtn} onClick={toggleCheckout}>
+        {/* Step indicator */}
+        <div className={styles.stepBar}>
+          {stepLabels.map((label, i) => (
+            <React.Fragment key={label}>
+              <div className={styles.stepNode}>
+                <span
+                  className={`${styles.stepDot} ${
+                    step >= i + 1 ? styles.stepDotActive : ""
+                  }`}
+                />
+                <span
+                  className={
+                    step === i + 1
+                      ? styles.stepLabelActive
+                      : styles.stepLabelDim
+                  }
+                >
+                  {label}
+                </span>
+              </div>
+              {i < stepLabels.length - 1 && (
+                <div
+                  className={`${styles.stepConnector} ${
+                    step > i + 1 ? styles.stepConnectorFilled : ""
+                  }`}
+                />
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+
+        <button
+          className={styles.closeBtn}
+          onClick={toggleCheckout}
+          aria-label="Close checkout"
+        >
           <X size={15} />
         </button>
 
-        <StepBar step={step} />
+        <div className={styles.body}>
+          <OrderSummary subtotal={totalPrice} selectedRate={selectedRate} />
 
-        {step === 1 && (
-          <Step1 onNext={() => setStep(2)} email={email} setEmail={setEmail} />
-        )}
-
-        {step === 2 && (
-          <Step2
-            onNext={goToStep3}
-            onBack={() => setStep(1)}
-            zip={zip}
-            setZip={setZip}
-            selectedRate={selectedRate}
-            setSelectedRate={setSelectedRate}
-            rates={rates}
-            setRates={setRates}
-            subtotal={totalPrice}
-          />
-        )}
-
-        {step === 3 &&
-          (creatingIntent ? (
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flex: 1,
-                padding: 60,
-                fontFamily: "var(--font-body)",
-                fontSize: 13,
-                color: "var(--color-stone)",
-                fontWeight: 300,
-              }}
-            >
-              Initializing secure payment...
-            </div>
-          ) : clientSecret ? (
-            <Elements
-              stripe={stripePromise}
-              options={{
-                clientSecret,
-                appearance: {
-                  theme: "stripe",
-                  variables: {
-                    fontFamily: "Jost, sans-serif",
-                    borderRadius: "2px",
-                    colorPrimary: "#1A1714",
-                  },
-                },
-              }}
-            >
-              <PaymentForm
-                onBack={() => setStep(2)}
-                email={email}
-                subtotal={totalPrice}
-                shippingFee={selectedRate?.price || 0}
-                paymentIntentId={paymentIntentId}
-              />
-            </Elements>
-          ) : (
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                flex: 1,
-                padding: 60,
-                gap: 16,
-              }}
-            >
-              <p
-                style={{
-                  fontFamily: "var(--font-body)",
-                  fontSize: 13,
-                  color: "var(--color-stone)",
-                  fontWeight: 300,
-                }}
+          <AnimatePresence mode="wait">
+            {step === 1 && (
+              <motion.div
+                key="step1"
+                className={styles.formCol}
+                initial={{ opacity: 0, x: 16 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -16 }}
+                transition={{ duration: 0.2 }}
               >
-                Could not initialize payment.
-              </p>
-              <button
-                onClick={goToStep3}
-                className={styles.primaryCheckoutBtn}
-                style={{ padding: "12px 24px" }}
+                <DetailsStep
+                  onNext={fetchRates}
+                  loading={fetchingRates}
+                  email={email}
+                  setEmail={setEmail}
+                  address={address}
+                  setAddress={setAddress}
+                />
+              </motion.div>
+            )}
+
+            {step === 2 && (
+              <motion.div
+                key="step2"
+                className={styles.formCol}
+                initial={{ opacity: 0, x: 16 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -16 }}
+                transition={{ duration: 0.2 }}
               >
-                Retry
-              </button>
-            </div>
-          ))}
+                <ShippingStep
+                  onNext={createPaymentIntent}
+                  onBack={() => setStep(1)}
+                  rates={rates}
+                  selectedRate={selectedRate}
+                  setSelectedRate={setSelectedRate}
+                  loading={creatingIntent}
+                />
+              </motion.div>
+            )}
+
+            {step === 3 && (
+              <motion.div
+                key="step3"
+                className={styles.formCol}
+                initial={{ opacity: 0, x: 16 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -16 }}
+                transition={{ duration: 0.2 }}
+              >
+                {creatingIntent ? (
+                  <div className={styles.formPanel}>
+                    <p className={styles.initNote}>
+                      Initializing secure payment…
+                    </p>
+                  </div>
+                ) : clientSecret ? (
+                  <Elements
+                    stripe={stripePromise}
+                    options={{
+                      clientSecret,
+                      appearance: {
+                        theme: "stripe",
+                        variables: {
+                          fontFamily: "Jost, sans-serif",
+                          borderRadius: "4px",
+                          colorPrimary: "#1A1714",
+                        },
+                      },
+                    }}
+                  >
+                    <PaymentStep
+                      onBack={() => setStep(2)}
+                      email={email}
+                      subtotal={totalPrice}
+                      shippingFee={selectedRate?.price ?? 0}
+                      paymentIntentId={paymentIntentId}
+                    />
+                  </Elements>
+                ) : (
+                  <div className={styles.formPanel}>
+                    <button
+                      className={styles.backBtn}
+                      onClick={() => setStep(2)}
+                    >
+                      <ArrowLeft size={14} /> Back
+                    </button>
+                    <p className={styles.initNote}>
+                      Could not initialize payment.
+                    </p>
+                    <button
+                      className={styles.primaryBtn}
+                      onClick={createPaymentIntent}
+                    >
+                      Retry
+                    </button>
+                  </div>
+                )}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </motion.div>
     </div>
   );
 }
-
-const backBtnStyle: React.CSSProperties = {
-  background: "transparent",
-  border: "none",
-  color: "var(--color-stone)",
-  cursor: "pointer",
-  display: "flex",
-  alignItems: "center",
-  gap: 6,
-  fontSize: 12,
-  fontFamily: "var(--font-body)",
-  fontWeight: 500,
-  letterSpacing: "0.06em",
-  textTransform: "uppercase",
-  marginBottom: 24,
-  padding: 0,
-};

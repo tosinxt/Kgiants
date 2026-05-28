@@ -9,7 +9,7 @@ const VAT_RATE = 0.075;
 
 export async function POST(req: NextRequest) {
   try {
-    const { items, shippingFee, customerEmail, shippingAddress } = await req.json();
+    const { items, customerEmail, shippingAddress, shippingFee } = await req.json();
 
     if (!items || items.length === 0) {
       return NextResponse.json({ error: 'No items in cart' }, { status: 400 });
@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
       0
     );
     const vat = Math.round(subtotal * VAT_RATE * 100) / 100;
-    const shipping = shippingFee || 0;
+    const shipping = typeof shippingFee === 'number' ? shippingFee : 0;
     const total = Math.round((subtotal + vat + shipping) * 100);
 
     const paymentIntent = await stripe.paymentIntents.create({
@@ -34,6 +34,7 @@ export async function POST(req: NextRequest) {
         shipping_fee: shipping.toFixed(2),
         item_count: items.length.toString(),
         shipping_zip: shippingAddress?.zip || '',
+        shipping_name: shippingAddress?.name || '',
       },
       automatic_payment_methods: { enabled: true },
     });
@@ -41,12 +42,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
       clientSecret: paymentIntent.client_secret,
       paymentIntentId: paymentIntent.id,
-      breakdown: {
-        subtotal,
-        vat,
-        shipping,
-        total: total / 100,
-      },
+      breakdown: { subtotal, vat, shipping, total: total / 100 },
     });
   } catch (err: any) {
     console.error('PaymentIntent error:', err);
