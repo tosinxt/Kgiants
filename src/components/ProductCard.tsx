@@ -112,7 +112,7 @@ export default function ProductCard({
           {!minimal && !isOOS && (
             <Magnet padding={40} magnetStrength={4} className={styles.addBtnWrap}>
               <ClickSpark
-                sparkColor="#9FE870"
+                sparkColor="#FFFFFF"
                 sparkSize={7}
                 sparkRadius={18}
                 sparkCount={8}

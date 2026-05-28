@@ -22,7 +22,7 @@
   width: var(--bubble-size);
   height: var(--bubble-size);
   border-radius: 50%;
-  background: var(--neo-base, #DDE8D0);
+  background: var(--color-white);
   box-shadow:
     4px 4px 10px rgba(175, 196, 158, 0.75),
     -4px -4px 10px rgba(255, 255, 255, 0.95);
@@ -173,12 +173,12 @@
 /* ── Pill link — neomorphic ──────────────────────────────────────── */
 
 .bubble-menu-items .pill-link {
-  --pill-bg: #DDE8D0;
+  --pill-bg: #FFFFFF;
   --pill-color: #163300;
   --pill-border: rgba(22, 51, 0, 0.08);
   --item-rot: 0deg;
   --pill-min-h: 140px;
-  --hover-bg: #9FE870;
+  --hover-bg: #FFFFFF;
   --hover-color: #163300;
 
   width: 100%;

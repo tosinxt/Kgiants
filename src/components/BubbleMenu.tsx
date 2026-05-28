@@ -38,11 +38,11 @@ interface BubbleMenuProps {
 }
 
 const DEFAULT_ITEMS: MenuItem[] = [
-  { label: 'home',     href: '/',     ariaLabel: 'Home',     rotation: -8, hoverStyles: { bgColor: '#9FE870', textColor: '#163300' } },
+  { label: 'home',     href: '/',     ariaLabel: 'Home',     rotation: -8, hoverStyles: { bgColor: '#FFFFFF', textColor: '#163300' } },
   { label: 'shop all', href: '/shop', ariaLabel: 'Shop all', rotation:  8, hoverStyles: { bgColor: '#B8D98A', textColor: '#163300' } },
   { label: 'diffusers',href: '/shop?category=Waterless+Diffuser', ariaLabel: 'Diffusers', rotation: -5, hoverStyles: { bgColor: '#C8E8A8', textColor: '#163300' } },
   { label: 'oils',     href: '/shop?category=Fragrance+Oil',      ariaLabel: 'Oils',      rotation:  6, hoverStyles: { bgColor: '#B8D98A', textColor: '#163300' } },
-  { label: 'contact',  href: '/contact', ariaLabel: 'Contact', rotation: -8, hoverStyles: { bgColor: '#163300', textColor: '#DDE8D0' } },
+  { label: 'contact',  href: '/contact', ariaLabel: 'Contact', rotation: -8, hoverStyles: { bgColor: '#163300', textColor: '#FFFFFF' } },
 ];
 
 export default function BubbleMenu({
@@ -51,7 +51,7 @@ export default function BubbleMenu({
   className,
   style,
   menuAriaLabel = 'Toggle menu',
-  menuBg = '#DDE8D0',
+  menuBg = '#FFFFFF',
   menuContentColor = '#163300',
   useFixedPosition = true,
   items,

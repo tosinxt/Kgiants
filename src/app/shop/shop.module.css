@@ -81,7 +81,7 @@
   padding: 9px 20px;
   border-radius: 999px;
   border: none;
-  background: #DDE8D0;
+  background: #FFFFFF;
   color: rgba(22, 51, 0, 0.6);
   font-family: var(--font-body);
   font-size: 13px;
@@ -115,14 +115,14 @@
 
 .chipActive {
   background: #163300;
-  color: #DDE8D0;
+  color: #FFFFFF;
   box-shadow:
     inset 2px 2px 6px rgba(5, 15, 0, 0.5),
     inset -1px -1px 3px rgba(0, 0, 0, 0.15);
 }
 
 .chipActive:hover {
-  color: #DDE8D0 !important;
+  color: #FFFFFF !important;
 }
 
 /* ── Sort dropdown ───────────────────────────────────────────────── */
@@ -141,7 +141,7 @@
   top: calc(100% + 8px);
   right: 0;
   min-width: 180px;
-  background: #DDE8D0;
+  background: #FFFFFF;
   border-radius: 16px;
   box-shadow:
     8px 8px 20px rgba(175, 196, 158, 0.75),

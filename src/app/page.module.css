@@ -96,7 +96,7 @@
 
 .heroAccent {
   font-style: italic;
-  color: #9FE870;
+  color: #FFFFFF;
 }
 
 .heroSubline {
@@ -126,7 +126,7 @@
   font-weight: var(--font-weight-semibold);
   letter-spacing: -0.01em;
   color: #163300;
-  background: #9FE870;
+  background: #FFFFFF;
   border-radius: 100px;
   text-decoration: none;
   padding: 14px 28px;
@@ -259,7 +259,7 @@
   margin-left: calc(-1 * var(--page-padding, var(--spacing-64)));
   margin-right: calc(-1 * var(--page-padding, var(--spacing-64)));
   width: calc(100% + var(--page-padding, var(--spacing-64)) * 2);
-  background: #DDE8D0;
+  background: var(--color-white);
   padding: var(--spacing-96) var(--page-padding, var(--spacing-64)) var(--spacing-80);
 }
 
@@ -274,7 +274,7 @@
   position: sticky;
   top: var(--header-height);
   z-index: 50;
-  background: #DDE8D0;
+  background: var(--color-white);
   padding-bottom: var(--spacing-16);
   margin-bottom: var(--spacing-16);
   transition: box-shadow 200ms ease-out;
@@ -351,7 +351,7 @@
   font-weight: var(--font-weight-medium);
   letter-spacing: 0.01em;
   color: rgba(22, 51, 0, 0.55);
-  background: #DDE8D0;
+  background: var(--color-white);
   border: none;
   border-radius: 100px;
   padding: 7px 18px;

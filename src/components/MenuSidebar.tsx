@@ -9,7 +9,7 @@ export default function MenuSidebar() {
   return (
     <BubbleMenu
       useFixedPosition={true}
-      menuBg="#DDE8D0"
+      menuBg="#FFFFFF"
       menuContentColor="#163300"
       menuAriaLabel="Toggle navigation"
       animationEase="back.out(1.5)"

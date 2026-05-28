@@ -55,7 +55,7 @@ export default function AddToCartButton({ product }: { product: Product }) {
         </div>
       )}
 
-      <ClickSpark sparkColor="#9FE870" sparkCount={10} sparkRadius={60} duration={500}>
+      <ClickSpark sparkColor="#FFFFFF" sparkCount={10} sparkRadius={60} duration={500}>
         <motion.button
           onClick={handleAdd}
           disabled={isOOS}

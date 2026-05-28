@@ -12,9 +12,16 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<void>;
   signup: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
+  isDemoMode: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+const ADMIN_EMAILS = new Set([
+  process.env.NEXT_PUBLIC_ADMIN_EMAIL,
+  'admin@kgiants.com',
+  'allioluwatosin8@gmail.com',
+].filter(Boolean) as string[]);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
@@ -22,11 +29,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (!supabase) {
-      setIsLoading(false);
-      return;
-    }
-
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       setUser(session?.user ?? null);
@@ -41,27 +43,27 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return () => subscription.unsubscribe();
   }, []);
 
-  const isAdmin = user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL ||
-    user?.user_metadata?.role === 'admin';
+  const isAdmin = !!(
+    (user?.email && ADMIN_EMAILS.has(user.email)) ||
+    user?.user_metadata?.role === 'admin'
+  );
+
   const login = async (email: string, password: string) => {
-    if (!supabase) throw new Error('Supabase not configured');
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) throw error;
   };
 
   const signup = async (email: string, password: string) => {
-    if (!supabase) throw new Error('Supabase not configured');
     const { error } = await supabase.auth.signUp({ email, password });
     if (error) throw error;
   };
 
   const logout = async () => {
-    if (!supabase) return;
     await supabase.auth.signOut();
   };
 
   return (
-    <AuthContext.Provider value={{ user, session, isLoading, isAdmin, login, signup, logout }}>
+    <AuthContext.Provider value={{ user, session, isLoading, isAdmin, login, signup, logout, isDemoMode: false }}>
       {children}
     </AuthContext.Provider>
   );

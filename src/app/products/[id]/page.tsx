@@ -4,7 +4,7 @@ import { getProductById, getProducts } from '@/lib/supabase';
 import AddToCartButton from './AddToCartButton';
 import ProductCard from '@/components/ProductCard';
 import Footer from '@/components/Footer';
-import ScrollGallery from './ScrollGallery';
+import EditorialGallery from './EditorialGallery';
 import ProductDetails from './ProductDetails';
 import styles from './product.module.css';
 
@@ -51,7 +51,7 @@ export default async function ProductPage(props: { params: PageParams }) {
 
       {/* Main grid */}
       <div className={styles.grid}>
-        <ScrollGallery images={images} name={product.name} />
+        <EditorialGallery images={images} name={product.name} />
         <ProductDetails product={product} shortName={shortName}>
           <AddToCartButton product={product} />
         </ProductDetails>
