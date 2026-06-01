@@ -5,7 +5,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_placeholder', {
   apiVersion: '2026-04-22.dahlia',
 });
 
-const VAT_RATE = 0.075;
+const VAT_RATE = 0.0825;
 
 export async function POST(req: NextRequest) {
   try {

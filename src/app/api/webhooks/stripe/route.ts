@@ -267,7 +267,7 @@ async function sendCustomerEmail(order: any, email: string, trackingNumber: stri
               <span style="color:#888;">Subtotal</span><span>$${order.subtotal.toFixed(2)}</span>
             </div>
             <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
-              <span style="color:#888;">Tax (7.5%)</span><span>$${(order.vat || 0).toFixed(2)}</span>
+              <span style="color:#888;">Tax (8.25%)</span><span>$${(order.vat || 0).toFixed(2)}</span>
             </div>
             <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
               <span style="color:#888;">Shipping</span>

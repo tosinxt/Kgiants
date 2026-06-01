@@ -23,7 +23,7 @@ export default function CartSidebar() {
   };
 
   const shipping = totalPrice >= 100 ? 0 : 8.99;
-  const tax = totalPrice * 0.075;
+  const tax = totalPrice * 0.0825;
   const total = totalPrice + tax + shipping;
 
   return (
@@ -137,7 +137,7 @@ export default function CartSidebar() {
                 <span>${totalPrice.toFixed(2)}</span>
               </div>
               <div className={styles.ledgerRow}>
-                <span>Tax (7.5%)</span>
+                <span>Tax (8.25%)</span>
                 <span>${tax.toFixed(2)}</span>
               </div>
               <div className={styles.ledgerRow}>

@@ -19,7 +19,7 @@ import styles from "./CheckoutDialog.module.css";
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || "",
 );
-const VAT_RATE = 0.075;
+const VAT_RATE = 0.0825;
 
 /* ── Order summary (always visible on left) ─────────────────────── */
 
@@ -61,7 +61,7 @@ function OrderSummary({
           <span>${subtotal.toFixed(2)}</span>
         </div>
         <div className={styles.ledgerRow}>
-          <span>Tax (7.5%)</span>
+          <span>Tax (8.25%)</span>
           <span>${vat.toFixed(2)}</span>
         </div>
         <div className={styles.ledgerRow}>

@@ -53,8 +53,8 @@ export default function RootLayout({
                 <CookieBanner />
               </Preloader>
               <Toaster
-                position="bottom-center"
-                gutter={12}
+                position="bottom-right"
+                gutter={10}
                 toastOptions={{
                   duration: 3500,
                   style: {
@@ -65,16 +65,21 @@ export default function RootLayout({
                     color: '#EFF7EA',
                     borderRadius: 0,
                     padding: '14px 20px',
-                    boxShadow: '0 8px 32px rgba(22,51,0,0.25)',
-                    border: '1px solid rgba(239,247,234,0.12)',
+                    boxShadow: '0 12px 40px rgba(22,51,0,0.35)',
+                    border: '1px solid rgba(239,247,234,0.15)',
                     letterSpacing: '0.01em',
                     maxWidth: 360,
+                    minWidth: 260,
                   },
                   success: {
                     iconTheme: { primary: '#7DC95E', secondary: '#163300' },
                   },
                   error: {
-                    iconTheme: { primary: '#FF6B6B', secondary: '#163300' },
+                    style: {
+                      background: '#3D0000',
+                      border: '1px solid rgba(255,107,107,0.25)',
+                    },
+                    iconTheme: { primary: '#FF6B6B', secondary: '#3D0000' },
                   },
                 }}
               />

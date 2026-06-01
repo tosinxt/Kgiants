@@ -43,7 +43,7 @@ export default async function OrderConfirmationPage(props: { params: PageParams 
           <div style={{ borderTop: '1px solid var(--color-border)', paddingTop: 28, display: 'flex', flexDirection: 'column', gap: 14 }}>
             {[
               { k: 'Subtotal',   v: `$${order.subtotal.toFixed(2)}` },
-              { k: 'VAT (7.5%)', v: `$${order.vat.toFixed(2)}` },
+              { k: 'Tax (8.25%)', v: `$${order.vat.toFixed(2)}` },
               { k: 'Shipping',   v: order.shipping_fee === 0 ? 'Free' : `$${order.shipping_fee.toFixed(2)}` },
             ].map(({ k, v }) => (
               <div key={k} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 14, fontFamily: 'var(--font-body)', fontWeight: 300 }}>
