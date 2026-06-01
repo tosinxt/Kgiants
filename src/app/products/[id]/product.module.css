@@ -58,22 +58,17 @@
 
 .editorialImageWrap {
   width: 100%;
-  aspect-ratio: 4 / 5;
   border-radius: 0px;
   overflow: hidden;
   background: #F9F9F9;
   border: 1px solid var(--color-border);
-  position: relative;
 }
 
 .editorialImage {
-  position: absolute;
-  inset: 0;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
+  height: auto;
   display: block;
+  object-fit: contain;
 }
 
 /* ── Details panel — right column (Sticky) ───────────────────────── */
@@ -493,16 +488,14 @@
     width: 85%;
     flex-shrink: 0;
     scroll-snap-align: center;
-    aspect-ratio: 4 / 5;
   }
 
   .relatedGrid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 480px) {
-  .editorialImageWrap { 
-    width: 90%; 
-    aspect-ratio: 3 / 4; 
+  .editorialImageWrap {
+    width: 90%;
   }
   .relatedGrid {
     grid-template-columns: repeat(2, 1fr);

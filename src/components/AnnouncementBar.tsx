@@ -3,10 +3,9 @@
 import styles from './AnnouncementBar.module.css';
 
 const MESSAGES = [
-  'Free shipping on orders over $75',
+  'Free shipping on orders over $100',
   'New scents just dropped — shop the collection',
   'Small-batch botanicals · No synthetic fillers',
-  '30-day returns, no questions asked',
   'US-wide delivery in 3–5 business days',
 ];
 

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 const FALLBACK_RATE = 9.99;
-const FREE_THRESHOLD = parseFloat(process.env.FREE_SHIPPING_THRESHOLD || '75');
+const FREE_THRESHOLD = parseFloat(process.env.FREE_SHIPPING_THRESHOLD || '100');
 
 export type ShippingRate = {
   id: string;

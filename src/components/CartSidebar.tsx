@@ -22,7 +22,7 @@ export default function CartSidebar() {
     toggleCheckout();
   };
 
-  const shipping = totalPrice >= 75 ? 0 : 8.99;
+  const shipping = totalPrice >= 100 ? 0 : 8.99;
   const tax = totalPrice * 0.075;
   const total = totalPrice + tax + shipping;
 
@@ -155,9 +155,9 @@ export default function CartSidebar() {
             </div>
 
             {/* Free shipping nudge */}
-            {totalPrice < 75 && (
+            {totalPrice < 100 && (
               <p className={styles.nudge}>
-                Add ${(75 - totalPrice).toFixed(2)} more for free shipping
+                Add ${(100 - totalPrice).toFixed(2)} more for free shipping
               </p>
             )}
 

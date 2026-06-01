@@ -44,8 +44,7 @@ const FEATURES = [
 ];
 
 const STATS = [
-  { value: 'Free shipping', label: 'On orders over $75' },
-  { value: '30-day returns', label: 'No questions asked' },
+  { value: 'Free shipping', label: 'On orders over $100' },
   { value: 'US-wide delivery', label: '3–5 business days' },
 ];
 
@@ -129,7 +128,7 @@ export default function HomeClient({ products }: { products: Product[] }) {
             transition={{ duration: 0.6, delay: 0.5, ease }}
           >
             Premium diffusers and botanical oils.<br />
-            Made to last — from the first drop.
+            App-controlled scent. Made to last — from the first drop.
           </motion.p>
 
           <motion.div
@@ -144,7 +143,6 @@ export default function HomeClient({ products }: { products: Product[] }) {
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </Link>
-            <Link href="#story" className={styles.heroGhost}>Our story</Link>
           </motion.div>
         </div>
 
@@ -154,9 +152,9 @@ export default function HomeClient({ products }: { products: Product[] }) {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.9 }}
         >
-          <span>Free shipping over $75</span>
+          <span>Free shipping over $100</span>
           <span className={styles.heroTrustDot} />
-          <span>30-day returns</span>
+          <span>App-controlled diffusers</span>
           <span className={styles.heroTrustDot} />
           <span>US delivery</span>
         </motion.div>
@@ -267,12 +265,6 @@ export default function HomeClient({ products }: { products: Product[] }) {
               Every product we make starts there: pure ingredients, intentional blends,
               and an experience worth coming back to.
             </p>
-            <Link href="/about" className={styles.storyLink}>
-              Read our story
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </Link>
           </motion.div>
 
           {/* Reveal wipe on story image */}
