@@ -67,7 +67,13 @@ export type OrderItem = {
 
 export const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  {
+    global: {
+      fetch: (url, options) =>
+        fetch(url, { ...options, signal: AbortSignal.timeout(8000) }),
+    },
+  }
 );
 
 export function getStockStatus(product: Product): 'in_stock' | 'low_stock' | 'out_of_stock' {
@@ -77,13 +83,17 @@ export function getStockStatus(product: Product): 'in_stock' | 'low_stock' | 'ou
 }
 
 export async function getProducts(): Promise<Product[]> {
-  const { data, error } = await supabase
-    .from('products')
-    .select('*')
-    .eq('visible', true)
-    .order('created_at', { ascending: false });
-  if (error) throw error;
-  return (data ?? []) as Product[];
+  try {
+    const { data, error } = await supabase
+      .from('products')
+      .select('*')
+      .eq('visible', true)
+      .order('created_at', { ascending: false });
+    if (error) return [];
+    return (data ?? []) as Product[];
+  } catch {
+    return [];
+  }
 }
 
 export async function getAllProductsAdmin(): Promise<Product[]> {

@@ -15,8 +15,8 @@ export default async function ProductPage(props: { params: PageParams }) {
   if (!params?.id) return <div>Missing identifier</div>;
 
   const [product, allProducts] = await Promise.all([
-    getProductById(params.id),
-    getProducts(),
+    getProductById(params.id).catch(() => null),
+    getProducts().catch(() => []),
   ]);
 
   const relatedProducts = allProducts.filter(p => p.id !== params.id).slice(0, 4);
