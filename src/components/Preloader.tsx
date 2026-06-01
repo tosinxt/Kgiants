@@ -4,15 +4,15 @@ import React, { useEffect, useState } from 'react';
 import styles from './Preloader.module.css';
 
 // All images to preload before revealing the site
+const BASE = 'https://hnsaowzakbutxvsqwymy.supabase.co/storage/v1/object/public/assets';
+
 const PRELOAD_IMAGES = [
-  // Landing page
-  '/images/new-hero.png',
-  '/images/hero.png',
-  // Product images (local)
-  '/images/products/white-plugin.png',
-  '/images/products/black-plugin.png',
-  '/images/products/diffuser-2.jpeg',
-  '/images/products/diffuser-3.jpeg',
+  `${BASE}/static/new-hero.png`,
+  `${BASE}/static/hero.png`,
+  `${BASE}/static/white-plugin.png`,
+  `${BASE}/static/black-plugin.png`,
+  `${BASE}/static/diffuser-2.jpeg`,
+  `${BASE}/static/diffuser-3.jpeg`,
 ];
 
 function loadImage(src: string): Promise<void> {

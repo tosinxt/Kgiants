@@ -96,7 +96,7 @@ export default function HomeClient({ products }: { products: Product[] }) {
         {/* Parallax background */}
         <motion.div className={styles.heroBgWrap} style={{ y: heroBgY }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/new-hero.png" alt="" aria-hidden="true" className={styles.heroBg} />
+          <img src="https://hnsaowzakbutxvsqwymy.supabase.co/storage/v1/object/public/assets/static/new-hero.png" alt="" aria-hidden="true" className={styles.heroBg} />
         </motion.div>
 
         <div className={styles.heroOverlay} aria-hidden="true" />
@@ -270,7 +270,7 @@ export default function HomeClient({ products }: { products: Product[] }) {
           {/* Reveal wipe on story image */}
           <RevealWipe className={styles.storyRight}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/hero.png" alt="KGiants signature diffuser" className={styles.storyImage} />
+            <img src="https://hnsaowzakbutxvsqwymy.supabase.co/storage/v1/object/public/assets/static/hero.png" alt="KGiants signature diffuser" className={styles.storyImage} />
             <div className={styles.storyImageMeta}>
               <span>Signature collection</span>
               <span>Est. 2024</span>
