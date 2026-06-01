@@ -1,0 +1,89 @@
+/* ── Preloader overlay ───────────────────────────────────────────── */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--color-ink, #163300);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fadeOut {
+  opacity: 0;
+  transform: scale(1.03);
+  pointer-events: none;
+}
+
+/* ── Inner content ───────────────────────────────────────────────── */
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  width: min(320px, 80vw);
+}
+
+.wordmark {
+  font-family: var(--font-display, serif);
+  font-size: clamp(2.8rem, 8vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: #fff;
+  margin: 0;
+  line-height: 1;
+}
+
+/* ── Progress track ──────────────────────────────────────────────── */
+.trackWrap {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.track {
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+}
+
+.bar {
+  height: 100%;
+  background: #fff;
+  transition: width 0.25s ease;
+  transform-origin: left;
+}
+
+.pct {
+  font-family: var(--font-body, sans-serif);
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.05em;
+  min-width: 28px;
+  text-align: right;
+}
+
+.tagline {
+  font-family: var(--font-body, sans-serif);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  margin: 0;
+}
+
+/* ── Site content — hidden until preloader done ──────────────────── */
+.content {
+  opacity: 0;
+  transition: opacity 0.5s ease 0.1s;
+}
+
+.contentVisible {
+  opacity: 1;
+}

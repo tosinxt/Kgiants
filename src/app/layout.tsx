@@ -10,6 +10,7 @@ import CartSidebar from "@/components/CartSidebar";
 import LayoutInner from "@/components/LayoutInner";
 import CookieBanner from "@/components/CookieBanner";
 import CheckoutDialog from "@/components/CheckoutDialog";
+import Preloader from "@/components/Preloader";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -35,20 +36,22 @@ export default function RootLayout({
         <AuthProvider>
           <CartProvider>
             <MenuProvider>
-              {/* Cart is fixed overlay — lives at root, not inside layout-wrapper */}
-              <CartSidebar />
+              <Preloader>
+                {/* Cart is fixed overlay — lives at root, not inside layout-wrapper */}
+                <CartSidebar />
 
-              <AnnouncementBar />
-              <Navbar />
-              <div className="layout-wrapper">
-                <LayoutInner>
-                  <main className="main-content">
-                    {children}
-                  </main>
-                </LayoutInner>
-              </div>
-              <CheckoutDialog />
-              <CookieBanner />
+                <AnnouncementBar />
+                <Navbar />
+                <div className="layout-wrapper">
+                  <LayoutInner>
+                    <main className="main-content">
+                      {children}
+                    </main>
+                  </LayoutInner>
+                </div>
+                <CheckoutDialog />
+                <CookieBanner />
+              </Preloader>
               <Toaster position="bottom-center" toastOptions={{ style: { fontFamily: 'var(--font-body)', fontSize: 14, background: '#1A1714', color: '#FAFAF7', borderRadius: 2 } }} />
             </MenuProvider>
           </CartProvider>
