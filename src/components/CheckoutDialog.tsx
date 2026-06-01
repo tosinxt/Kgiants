@@ -458,8 +458,11 @@ export default function CheckoutDialog() {
         body: JSON.stringify({
           items,
           customerEmail: email,
-          shippingAddress: { name: address.name, zip: address.zip },
+          shippingAddress: address,
           shippingFee: selectedRate.price,
+          shippingRateId: selectedRate.id,
+          shippingService: selectedRate.service,
+          shippingProvider: selectedRate.provider,
         }),
       });
       const data = await res.json();

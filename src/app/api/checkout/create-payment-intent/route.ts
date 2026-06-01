@@ -9,7 +9,15 @@ const VAT_RATE = 0.075;
 
 export async function POST(req: NextRequest) {
   try {
-    const { items, customerEmail, shippingAddress, shippingFee } = await req.json();
+    const {
+      items,
+      customerEmail,
+      shippingAddress,
+      shippingFee,
+      shippingRateId,
+      shippingService,
+      shippingProvider,
+    } = await req.json();
 
     if (!items || items.length === 0) {
       return NextResponse.json({ error: 'No items in cart' }, { status: 400 });
@@ -33,8 +41,21 @@ export async function POST(req: NextRequest) {
         vat: vat.toFixed(2),
         shipping_fee: shipping.toFixed(2),
         item_count: items.length.toString(),
-        shipping_zip: shippingAddress?.zip || '',
-        shipping_name: shippingAddress?.name || '',
+        // Full address for label generation
+        shipping_address: JSON.stringify(shippingAddress),
+        // Shippo rate to purchase
+        shippo_rate_id: shippingRateId || '',
+        shipping_service: shippingService || '',
+        shipping_provider: shippingProvider || '',
+        // Item weights for parcel
+        items_json: JSON.stringify(
+          items.map((i: any) => ({
+            sku: i.sku || i.id,
+            name: i.name,
+            quantity: i.quantity,
+            weight_oz: i.weight_oz || 4,
+          }))
+        ),
       },
       automatic_payment_methods: { enabled: true },
     });
