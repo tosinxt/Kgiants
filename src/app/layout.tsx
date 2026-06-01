@@ -52,7 +52,32 @@ export default function RootLayout({
                 <CheckoutDialog />
                 <CookieBanner />
               </Preloader>
-              <Toaster position="bottom-center" toastOptions={{ style: { fontFamily: 'var(--font-body)', fontSize: 14, background: '#1A1714', color: '#FAFAF7', borderRadius: 2 } }} />
+              <Toaster
+                position="bottom-center"
+                gutter={12}
+                toastOptions={{
+                  duration: 3500,
+                  style: {
+                    fontFamily: 'var(--font-body)',
+                    fontSize: 13,
+                    fontWeight: 500,
+                    background: '#163300',
+                    color: '#EFF7EA',
+                    borderRadius: 0,
+                    padding: '14px 20px',
+                    boxShadow: '0 8px 32px rgba(22,51,0,0.25)',
+                    border: '1px solid rgba(239,247,234,0.12)',
+                    letterSpacing: '0.01em',
+                    maxWidth: 360,
+                  },
+                  success: {
+                    iconTheme: { primary: '#7DC95E', secondary: '#163300' },
+                  },
+                  error: {
+                    iconTheme: { primary: '#FF6B6B', secondary: '#163300' },
+                  },
+                }}
+              />
             </MenuProvider>
           </CartProvider>
         </AuthProvider>

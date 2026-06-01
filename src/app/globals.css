@@ -1,17 +1,17 @@
 :root {
   /* ── Palette — Wise design language ─────────────────────────── */
-  --color-cream:          #FFFFFF;          /* Pure White */
-  --color-ink:            #0E0F0C;          /* Wise content primary */
-  --color-stone:          #454745;          /* Wise content secondary */
-  --color-stone-light:    #6A6C6A;          /* Wise content tertiary */
+  --color-cream:          #EFF7EA;          /* Light green canvas */
+  --color-ink:            #0E0F0C;          /* Content primary */
+  --color-stone:          #454745;          /* Content secondary */
+  --color-stone-light:    #6A6C6A;          /* Content tertiary */
   --color-gold:           #B8963E;          /* warm secondary accent */
   --color-gold-light:     #D4B87A;          /* warm tint */
-  --color-white:          #FFFFFF;          /* card surface */
-  --color-emerald:        #163300;          /* Wise Forest Green — nav, primary CTAs */
-  --color-emerald-accent: #FFFFFF;          /* Wise Bright Green — highlights, badges */
+  --color-white:          #E5F2DE;          /* Card / elevated surface — light green */
+  --color-emerald:        #163300;          /* Forest Green — nav, primary CTAs */
+  --color-emerald-accent: #163300;          /* Badge text */
   --color-emerald-deep:   #0A1F00;          /* deeper Forest Green */
-  --color-emerald-light:  #F4F4F4;          /* Neutral gray instead of mint */
-  --color-border:         rgba(0, 0, 0, 0.08);
+  --color-emerald-light:  #D6EBCC;          /* Tinted green — hover states */
+  --color-border:         rgba(22, 51, 0, 0.1);
 
   /* Legacy aliases (used in existing components — maps to new system) */
   --color-oatmeal-canvas: var(--color-cream);

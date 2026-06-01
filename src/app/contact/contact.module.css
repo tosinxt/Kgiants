@@ -77,7 +77,7 @@
 
 /* ── Right panel — form ─────────────────────────────── */
 .right {
-  background: var(--color-canvas, #fafaf8);
+  background: var(--color-cream);
   display: flex;
   align-items: center;
   padding: 80px 64px;
