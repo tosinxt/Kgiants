@@ -245,47 +245,140 @@ async function sendCustomerEmail(order: any, email: string, trackingNumber: stri
   const resend = getResend();
   if (!resend) return;
 
-  const trackingRow = trackingNumber
-    ? `<div style="display:flex;justify-content:space-between;margin-bottom:12px;">
-        <span style="color:#888;">Tracking</span>
-        <span>${trackingNumber}</span>
-       </div>`
-    : '';
+  const orderId = order.id.slice(0, 8).toUpperCase();
+  const shippingFee = order.shipping_fee || 0;
+
+  const trackingRow = trackingNumber ? `
+    <tr>
+      <td style="padding:14px 0;color:#8a8a8a;font-size:13px;letter-spacing:0.5px;border-bottom:1px solid #222;width:50%;">Tracking</td>
+      <td style="padding:14px 0;font-size:13px;text-align:right;border-bottom:1px solid #222;color:#C9A84C;letter-spacing:0.5px;">${trackingNumber}</td>
+    </tr>` : '';
 
   try {
     await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL || 'orders@kgiants.com',
       to: email,
-      subject: `KGiants — Order Confirmed (#${order.id.slice(0, 8).toUpperCase()})`,
+      subject: `Order Confirmed — #${orderId} | KGiants`,
       html: `
-        <div style="font-family:monospace;max-width:560px;margin:0 auto;background:#000;color:#fff;padding:40px;">
-          <h1 style="font-size:14px;letter-spacing:2px;text-transform:uppercase;margin-bottom:32px;">KGiants</h1>
-          <h2 style="font-size:28px;font-weight:400;margin-bottom:8px;">Order Confirmed</h2>
-          <p style="color:#888;font-size:13px;margin-bottom:40px;">Order #${order.id.slice(0, 8).toUpperCase()}</p>
-          <div style="border-top:1px solid #333;padding-top:24px;margin-bottom:24px;">
-            <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
-              <span style="color:#888;">Subtotal</span><span>$${order.subtotal.toFixed(2)}</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
-              <span style="color:#888;">Tax (8.25%)</span><span>$${(order.vat || 0).toFixed(2)}</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
-              <span style="color:#888;">Shipping</span>
-              <span>${(order.shipping_fee || 0) === 0 ? 'Free' : '$' + (order.shipping_fee || 0).toFixed(2)}</span>
-            </div>
-            ${trackingRow}
-            <div style="display:flex;justify-content:space-between;border-top:1px solid #333;padding-top:16px;">
-              <span style="font-weight:700;">Total</span>
-              <span style="font-weight:700;">$${order.total.toFixed(2)}</span>
-            </div>
-          </div>
-          <p style="color:#888;font-size:13px;">
-            Estimated delivery: <span style="color:#fff;">${order.estimated_delivery || '5–7 business days'}</span>
-          </p>
-          <p style="margin-top:40px;color:#555;font-size:12px;">
-            Thank you for shopping with KGiants. Questions? Reply to this email.
-          </p>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body style="margin:0;padding:0;background-color:#0a0a0a;font-family:'Inter',Helvetica,Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#0a0a0a;padding:40px 20px;">
+    <tr>
+      <td align="center">
+        <table width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;">
+
+          <!-- Header -->
+          <tr>
+            <td style="padding:0 0 40px 0;">
+              <table width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td>
+                    <p style="margin:0;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#C9A84C;">KGIANTS</p>
+                  </td>
+                  <td align="right">
+                    <p style="margin:0;font-size:11px;letter-spacing:1.5px;color:#444;text-transform:uppercase;">ORDER #${orderId}</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Gold divider -->
+          <tr>
+            <td style="padding:0 0 40px 0;">
+              <div style="height:1px;background:linear-gradient(90deg,#C9A84C,#8B6914,transparent);"></div>
+            </td>
+          </tr>
+
+          <!-- Hero -->
+          <tr>
+            <td style="padding:0 0 48px 0;">
+              <h1 style="margin:0 0 12px 0;font-family:'Playfair Display',Georgia,serif;font-size:36px;font-weight:400;color:#ffffff;line-height:1.2;letter-spacing:-0.5px;">Order Confirmed</h1>
+              <p style="margin:0;font-size:14px;color:#666;line-height:1.6;letter-spacing:0.2px;">Thank you for your purchase. Your order is being prepared with care.</p>
+            </td>
+          </tr>
+
+          <!-- Order summary card -->
+          <tr>
+            <td style="padding:0 0 32px 0;">
+              <table width="100%" cellpadding="0" cellspacing="0" style="background:#111;border:1px solid #1e1e1e;border-radius:2px;">
+                <tr>
+                  <td style="padding:28px 28px 0 28px;">
+                    <p style="margin:0 0 20px 0;font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:#C9A84C;">Order Summary</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:0 28px 28px 28px;">
+                    <table width="100%" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td style="padding:14px 0;color:#8a8a8a;font-size:13px;letter-spacing:0.5px;border-bottom:1px solid #222;width:50%;">Subtotal</td>
+                        <td style="padding:14px 0;font-size:13px;text-align:right;border-bottom:1px solid #222;color:#e0e0e0;">$${order.subtotal.toFixed(2)}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:14px 0;color:#8a8a8a;font-size:13px;letter-spacing:0.5px;border-bottom:1px solid #222;">Tax (8.25%)</td>
+                        <td style="padding:14px 0;font-size:13px;text-align:right;border-bottom:1px solid #222;color:#e0e0e0;">$${(order.vat || 0).toFixed(2)}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:14px 0;color:#8a8a8a;font-size:13px;letter-spacing:0.5px;border-bottom:1px solid #222;">Shipping</td>
+                        <td style="padding:14px 0;font-size:13px;text-align:right;border-bottom:1px solid #222;color:#e0e0e0;">${shippingFee === 0 ? 'Complimentary' : '$' + shippingFee.toFixed(2)}</td>
+                      </tr>
+                      ${trackingRow}
+                      <tr>
+                        <td style="padding:20px 0 0 0;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#ffffff;">Total</td>
+                        <td style="padding:20px 0 0 0;font-size:20px;font-weight:600;text-align:right;color:#C9A84C;font-family:'Playfair Display',Georgia,serif;">$${order.total.toFixed(2)}</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Delivery -->
+          <tr>
+            <td style="padding:0 0 48px 0;">
+              <table width="100%" cellpadding="0" cellspacing="0" style="border-left:2px solid #C9A84C;padding-left:20px;">
+                <tr>
+                  <td>
+                    <p style="margin:0 0 4px 0;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#C9A84C;">Estimated Delivery</p>
+                    <p style="margin:0;font-size:15px;color:#e0e0e0;font-family:'Playfair Display',Georgia,serif;font-weight:400;">${order.estimated_delivery || '5–7 business days'}</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Gold divider -->
+          <tr>
+            <td style="padding:0 0 32px 0;">
+              <div style="height:1px;background:linear-gradient(90deg,transparent,#C9A84C,transparent);"></div>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:0 0 8px 0;">
+              <p style="margin:0;font-size:12px;color:#444;line-height:1.7;letter-spacing:0.2px;">Questions about your order? Reply directly to this email and we'll take care of you.</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <p style="margin:0;font-size:11px;color:#333;letter-spacing:0.5px;">KGiants &nbsp;·&nbsp; Dallas, TX &nbsp;·&nbsp; kgiants.com</p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
       `,
     });
   } catch (err) {
@@ -311,27 +404,90 @@ async function sendAdminLabelEmail(
     await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL || 'orders@kgiants.com',
       to: adminEmail,
-      subject: `📦 New Order — Print Label #${order.id.slice(0, 8).toUpperCase()}`,
+      subject: `New Order #${order.id.slice(0, 8).toUpperCase()} — $${order.total.toFixed(2)} | Print Label`,
       html: `
-        <div style="font-family:monospace;max-width:560px;margin:0 auto;padding:40px;background:#fff;color:#000;">
-          <h1 style="font-size:20px;font-weight:700;margin-bottom:8px;">New Order Received</h1>
-          <p style="color:#555;margin-bottom:32px;">Order #${order.id.slice(0, 8).toUpperCase()} · $${order.total.toFixed(2)}</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body style="margin:0;padding:0;background-color:#f4f4f4;font-family:'Inter',Helvetica,Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f4;padding:40px 20px;">
+    <tr>
+      <td align="center">
+        <table width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;">
 
-          <table style="width:100%;border-collapse:collapse;margin-bottom:32px;">
-            <tr><td style="padding:8px 0;color:#555;width:140px;">Ship to</td><td>${toName}</td></tr>
-            <tr><td style="padding:8px 0;color:#555;">Address</td><td>${toAddr}</td></tr>
-            <tr><td style="padding:8px 0;color:#555;">Tracking</td><td>${trackingNumber || '—'}</td></tr>
-            <tr><td style="padding:8px 0;color:#555;">Customer email</td><td>${order.customer_email}</td></tr>
-          </table>
+          <!-- Header bar -->
+          <tr>
+            <td style="background:#0a0a0a;padding:20px 28px;border-radius:2px 2px 0 0;">
+              <table width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td>
+                    <p style="margin:0;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#C9A84C;">KGIANTS</p>
+                  </td>
+                  <td align="right">
+                    <p style="margin:0;font-size:11px;letter-spacing:1px;color:#666;text-transform:uppercase;">Admin Alert</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
 
-          <a href="${labelUrl}" style="display:inline-block;background:#000;color:#fff;padding:14px 28px;text-decoration:none;font-size:14px;letter-spacing:1px;">
-            DOWNLOAD SHIPPING LABEL (PDF)
-          </a>
+          <!-- Gold accent line -->
+          <tr>
+            <td style="height:2px;background:linear-gradient(90deg,#C9A84C,#8B6914);"></td>
+          </tr>
 
-          <p style="margin-top:32px;color:#999;font-size:12px;">
-            Print this label, pack the order, and drop it off at your carrier.
-          </p>
-        </div>
+          <!-- Body card -->
+          <tr>
+            <td style="background:#ffffff;padding:36px 28px;">
+
+              <p style="margin:0 0 6px 0;font-size:20px;font-weight:600;color:#0a0a0a;letter-spacing:-0.3px;">New Order Received</p>
+              <p style="margin:0 0 32px 0;font-size:13px;color:#888;">Order #${order.id.slice(0, 8).toUpperCase()} &nbsp;·&nbsp; $${order.total.toFixed(2)}</p>
+
+              <!-- Details table -->
+              <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:32px;">
+                <tr>
+                  <td style="padding:12px 0;font-size:12px;letter-spacing:0.5px;color:#aaa;border-bottom:1px solid #f0f0f0;width:130px;text-transform:uppercase;">Ship To</td>
+                  <td style="padding:12px 0;font-size:13px;color:#111;border-bottom:1px solid #f0f0f0;font-weight:500;">${toName}</td>
+                </tr>
+                <tr>
+                  <td style="padding:12px 0;font-size:12px;letter-spacing:0.5px;color:#aaa;border-bottom:1px solid #f0f0f0;text-transform:uppercase;">Address</td>
+                  <td style="padding:12px 0;font-size:13px;color:#111;border-bottom:1px solid #f0f0f0;">${toAddr}</td>
+                </tr>
+                <tr>
+                  <td style="padding:12px 0;font-size:12px;letter-spacing:0.5px;color:#aaa;border-bottom:1px solid #f0f0f0;text-transform:uppercase;">Tracking</td>
+                  <td style="padding:12px 0;font-size:13px;color:#111;border-bottom:1px solid #f0f0f0;font-family:monospace;">${trackingNumber || '—'}</td>
+                </tr>
+                <tr>
+                  <td style="padding:12px 0;font-size:12px;letter-spacing:0.5px;color:#aaa;text-transform:uppercase;">Customer</td>
+                  <td style="padding:12px 0;font-size:13px;color:#111;">${order.customer_email}</td>
+                </tr>
+              </table>
+
+              <!-- CTA -->
+              <a href="${labelUrl}" style="display:inline-block;background:#0a0a0a;color:#C9A84C;padding:14px 28px;text-decoration:none;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;border-radius:1px;">
+                Download Shipping Label
+              </a>
+
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background:#0a0a0a;padding:16px 28px;border-radius:0 0 2px 2px;">
+              <p style="margin:0;font-size:11px;color:#444;letter-spacing:0.5px;">Print this label · Pack the order · Drop off at carrier</p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
       `,
     });
   } catch (err) {
